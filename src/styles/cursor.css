@@ -1,0 +1,55 @@
+/**
+ * src/styles/cursor.css
+ * ----------------------------------------------------------------------------
+ * Custom pointer composed of a small filled dot and a larger outlined ring.
+ * The ring lags slightly behind the dot (animated in JS) to create a sense
+ * of weight. Element is hidden on touch devices via `responsive.css`.
+ *
+ * Dependencies: tokens.css
+ * Related JS:  src/animations/cursor.ts
+ * ----------------------------------------------------------------------------
+ */
+.cursor {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: 999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  color: #f4f1ea;
+}
+
+.cursor__dot,
+.cursor__ring {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  border-radius: 999px;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform, width, height, opacity;
+}
+
+.cursor__dot {
+  inline-size: 7px;
+  block-size: 7px;
+  background-color: currentColor;
+}
+
+.cursor__ring {
+  inline-size: 36px;
+  block-size: 36px;
+  border: 1px solid currentColor;
+  transition:
+    inline-size 0.3s var(--ease-out-expo),
+    block-size 0.3s var(--ease-out-expo),
+    opacity 0.3s var(--ease-out-expo);
+}
+
+.cursor.is-hover .cursor__ring {
+  inline-size: 70px;
+  block-size: 70px;
+}
+
+.cursor.is-hidden {
+  opacity: 0;
+}

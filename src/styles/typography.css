@@ -1,0 +1,54 @@
+/**
+ * src/styles/typography.css
+ * ----------------------------------------------------------------------------
+ * Typography rules. Establishes the brutal display rhythm (Space Grotesk)
+ * vs. the calm body rhythm (Inter). All sizes use `clamp()` so the page is
+ * fluidly typographic across every viewport without a single media query.
+ *
+ * Dependencies: tokens.css
+ * ----------------------------------------------------------------------------
+ */
+.display-1,
+.display-2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  color: var(--theme-headline);
+  text-wrap: balance;
+}
+
+.display-1 {
+  font-size: var(--fs-3xl);
+}
+
+.display-2 {
+  font-size: var(--fs-2xl);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5ch;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--theme-text);
+  opacity: 0.7;
+}
+
+.body-lg {
+  font-size: var(--fs-lg);
+  line-height: 1.45;
+  font-weight: 400;
+  max-inline-size: 48ch;
+  text-wrap: pretty;
+}
+
+.body {
+  font-size: var(--fs-md);
+  max-inline-size: 56ch;
+  text-wrap: pretty;
+}

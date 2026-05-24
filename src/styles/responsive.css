@@ -1,0 +1,98 @@
+/**
+ * src/styles/responsive.css
+ * ----------------------------------------------------------------------------
+ * Mobile / touch overrides. Imported LAST so its rules win in the cascade.
+ *
+ * Key behaviours:
+ *   - Hide custom cursor on touch devices.
+ *   - Drop the pinned 2-column Expertise layout into a single column.
+ *   - Tighten hero illustration size and switch composition to stacked.
+ *   - Reduce header presence (logo-only navigation).
+ *   - Replace hover-only effects with active states.
+ *
+ * Dependencies: every other stylesheet.
+ * ----------------------------------------------------------------------------
+ */
+
+/* Touch devices ------------------------------------------------------------ */
+@media (hover: none) {
+  .cursor {
+    display: none;
+  }
+
+  .marquee {
+    --marquee-duration: 30s;
+  }
+
+  .expertise__item:active .expertise__shape {
+    opacity: 0.35;
+    transform: translate3d(0, -50%, 0) rotate(0deg);
+  }
+}
+
+/* Tablet and below --------------------------------------------------------- */
+@media (max-width: 900px) {
+  .site-header__nav {
+    display: none;
+  }
+
+  .hero__illustration {
+    inline-size: min(85vw, 520px);
+  }
+
+  .hero__media {
+    inset-block-start: 4rem;
+    inset-block-end: auto;
+    align-items: start;
+  }
+
+  .expertise__container {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise__sticky {
+    position: relative;
+    inset-block-start: auto;
+  }
+
+  .expertise__item {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise__item-text {
+    grid-column: 1;
+  }
+
+  .expertise__shape {
+    display: none;
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+}
+
+/* Phones ------------------------------------------------------------------- */
+@media (max-width: 600px) {
+  .preloader {
+    font-size: clamp(4.5rem, 35vw, 9rem);
+  }
+
+  .hero {
+    padding-block-start: 6rem;
+  }
+
+  .hero__title {
+    font-size: clamp(2.4rem, 12vw, 4.5rem);
+  }
+
+  .footer__title {
+    font-size: clamp(3rem, 13vw, 6rem);
+  }
+
+  .magnetic__inner {
+    padding-block: 1rem;
+    padding-inline: 1.6rem;
+    font-size: 1rem;
+  }
+}

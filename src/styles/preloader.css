@@ -1,0 +1,41 @@
+/**
+ * src/styles/preloader.css
+ * ----------------------------------------------------------------------------
+ * Full-viewport preloader overlay. Animated counter centred on screen;
+ * collapses upward when the page is ready (animation driven by GSAP in
+ * `src/animations/preloader.ts`).
+ *
+ * Dependencies: tokens.css
+ * ----------------------------------------------------------------------------
+ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background-color: var(--c-noir);
+  color: var(--c-bg);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(5rem, 22vw, 18rem);
+  letter-spacing: -0.06em;
+  line-height: 1;
+  will-change: clip-path, transform, opacity;
+  clip-path: inset(0 0 0 0);
+}
+
+.preloader__count {
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+}
+
+.preloader__percent {
+  display: inline-block;
+  margin-inline-start: 0.05em;
+  opacity: 0.55;
+}
+
+.preloader.is-hidden {
+  display: none;
+}

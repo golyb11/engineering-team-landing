@@ -1,0 +1,311 @@
+<!--
+  index.html
+  ----------------------------------------------------------------------------
+  Single-page entry point for the Engineering Team boutique landing page.
+
+  Purpose:
+    - Root HTML document with full SEO / OpenGraph / Twitter card metadata.
+    - Hosts the preloader, custom cursor, and the four primary sections
+      (Hero, Expertise, Stack, Footer) declaratively so JS can stay slim.
+    - Loads Inter (UI text) and Space Grotesk (display headlines) from
+      Google Fonts with `preconnect` for optimal LCP.
+
+  Dependencies:
+    - /src/main.ts            (entry script, bootstraps animations)
+    - /src/styles/main.css    (global tokens + section styles via @import)
+    - /team_illustration.png  (static asset served from /public)
+
+  Conventions:
+    - BEM-like, hyphen-cased classes (`.hero__title`, `.expertise__item`).
+    - All content is server-rendered HTML; JS only progressively enhances it
+      so the page remains usable + indexable with JS disabled.
+  ----------------------------------------------------------------------------
+-->
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#F4F1EA" />
+    <meta name="color-scheme" content="light" />
+
+    <title>Engineering Team — Инженерия цифровых продуктов</title>
+    <meta
+      name="description"
+      content="Независимая команда из трёх разработчиков. Проектируем архитектуру, создаём кастомные CRM, внедряем AI в Telegram-ботов и разрабатываем высоконагруженные SPA."
+    />
+    <meta name="author" content="Engineering Team" />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="https://example.com/" />
+
+    <!-- OpenGraph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Engineering Team — Инженерия цифровых продуктов" />
+    <meta
+      property="og:description"
+      content="Проектируем архитектуру, создаём кастомные CRM, внедряем AI в Telegram-ботов, разрабатываем высоконагруженные SPA."
+    />
+    <meta property="og:image" content="./team_illustration.png" />
+    <meta property="og:locale" content="ru_RU" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Engineering Team — Инженерия цифровых продуктов" />
+    <meta
+      name="twitter:description"
+      content="Бутиковая команда из трёх инженеров. Архитектура, CRM, AI-боты, SPA."
+    />
+    <meta name="twitter:image" content="./team_illustration.png" />
+
+    <!-- Favicons (inline SVG keeps requests count low for Lighthouse) -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232C303A'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-family='Inter,Arial,sans-serif' font-weight='800' font-size='16' fill='%23F4F1EA'%3EE%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="apple-touch-icon" href="./team_illustration.png" />
+
+    <!-- Fonts: preconnect saves ~100ms on first paint -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap"
+    />
+
+    <!-- Preload the hero image to win LCP -->
+    <link rel="preload" as="image" href="./team_illustration.png" fetchpriority="high" />
+
+    <!-- App entry (Vite injects hashed bundle/style at build time) -->
+    <script type="module" src="/src/main.ts" defer></script>
+
+    <!-- Structured data for richer search results -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Engineering Team",
+        "description": "Бутиковая команда из трёх инженеров. Архитектура, CRM, AI-боты, высоконагруженные SPA.",
+        "url": "https://example.com/",
+        "logo": "https://example.com/team_illustration.png"
+      }
+    </script>
+  </head>
+
+  <body class="page" data-theme="light">
+    <!-- ====================== PRELOADER ====================== -->
+    <div class="preloader" aria-hidden="true">
+      <span class="preloader__count" data-preloader-count>0</span>
+      <span class="preloader__percent">%</span>
+    </div>
+
+    <!-- ====================== CUSTOM CURSOR ====================== -->
+    <div class="cursor" data-cursor aria-hidden="true">
+      <div class="cursor__dot"></div>
+      <div class="cursor__ring"></div>
+    </div>
+
+    <!-- ====================== HEADER ====================== -->
+    <header class="site-header">
+      <a href="#hero" class="site-header__brand" data-cursor-target>
+        <span class="site-header__mark">E/T</span>
+        <span class="site-header__name">Engineering Team</span>
+      </a>
+      <nav class="site-header__nav" aria-label="Основная навигация">
+        <a href="#expertise" data-cursor-target>Фокус</a>
+        <a href="#stack" data-cursor-target>Стек</a>
+        <a href="#contact" data-cursor-target>Контакты</a>
+      </nav>
+    </header>
+
+    <main class="page__main">
+      <!-- ====================== HERO ====================== -->
+      <section id="hero" class="hero" data-section="hero">
+        <div class="hero__inner">
+          <div class="hero__media" data-parallax>
+            <img
+              src="./team_illustration.png"
+              alt="Иллюстрация команды из трёх разработчиков"
+              class="hero__illustration"
+              width="1200"
+              height="1200"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <div class="hero__media-glow" aria-hidden="true"></div>
+          </div>
+
+          <h1 class="hero__title" data-split>
+            <span class="hero__title-line">Инженерия</span>
+            <span class="hero__title-line">цифровых</span>
+            <span class="hero__title-line hero__title-line--accent">продуктов.</span>
+            <span class="hero__title-line hero__title-sub">
+              От сложной бизнес-логики
+            </span>
+            <span class="hero__title-line hero__title-sub">
+              до безупречных интерфейсов.
+            </span>
+          </h1>
+
+          <p class="hero__lead" data-reveal>
+            Мы — независимая команда из трёх разработчиков. Проектируем архитектуру,
+            создаём кастомные CRM, внедряем AI в Telegram-ботов и разрабатываем
+            высоконагруженные SPA. Не работаем по шаблонам, решаем задачи бизнеса
+            с помощью чистого кода.
+          </p>
+
+          <div class="hero__meta" data-reveal>
+            <span class="hero__meta-label">[ 01 ]</span>
+            <span class="hero__meta-text">Boutique engineering · est. 2024</span>
+          </div>
+        </div>
+
+        <a href="#expertise" class="hero__scroll" data-cursor-target aria-label="Прокрутить вниз">
+          <span class="hero__scroll-text">SCROLL</span>
+          <span class="hero__scroll-line"></span>
+        </a>
+      </section>
+
+      <!-- ====================== EXPERTISE ====================== -->
+      <section id="expertise" class="expertise" data-section="expertise">
+        <div class="expertise__container">
+          <aside class="expertise__sticky">
+            <span class="expertise__eyebrow">[ 02 ] · Expertise</span>
+            <h2 class="expertise__title">
+              Наш<br />фокус.
+            </h2>
+            <p class="expertise__tagline">
+              Три направления, в которых мы умеем больше, чем кто-либо ещё.
+            </p>
+          </aside>
+
+          <ol class="expertise__list">
+            <li class="expertise__item" data-expertise>
+              <div class="expertise__index">01</div>
+              <h3 class="expertise__item-title" data-glitch>
+                Frontend-архитектура и интерфейсы
+              </h3>
+              <p class="expertise__item-text">
+                Создаём реактивные Single Page Applications, инкапсулируем
+                сложную бизнес-логику на клиенте. Внедряем 3D-графику
+                (Three.js / WebGL) для создания интерактивного опыта прямо
+                в браузере. Pixel-perfect вёрстка, сложные анимации,
+                оптимизация рендеринга.
+              </p>
+              <div class="expertise__shape" aria-hidden="true"></div>
+            </li>
+
+            <li class="expertise__item" data-expertise>
+              <div class="expertise__index">02</div>
+              <h3 class="expertise__item-title" data-glitch>
+                Системы управления и CRM
+              </h3>
+              <p class="expertise__item-text">
+                Проектируем масштабируемые ERP и CRM системы для внутреннего
+                использования. Разделяем логику на надёжный API и быстрый
+                клиентский интерфейс. Ролевые модели доступа, дашборды,
+                аналитика в реальном времени через WebSockets.
+              </p>
+              <div class="expertise__shape expertise__shape--triangle" aria-hidden="true"></div>
+            </li>
+
+            <li class="expertise__item" data-expertise>
+              <div class="expertise__index">03</div>
+              <h3 class="expertise__item-title" data-glitch>
+                Интеллектуальные Telegram-боты
+              </h3>
+              <p class="expertise__item-text">
+                Разрабатываем ботов с продвинутой архитектурой (State Machines).
+                Интеграция с LLM, платёжными шлюзами и сторонними API. От
+                автоматизированных воронок до сложных AI-ассистентов
+                с контекстной памятью.
+              </p>
+              <div class="expertise__shape expertise__shape--square" aria-hidden="true"></div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ====================== STACK MARQUEE ====================== -->
+      <section id="stack" class="stack" data-section="stack">
+        <span class="stack__eyebrow">[ 03 ] · Stack</span>
+
+        <div class="marquee" data-marquee>
+          <div class="marquee__track" data-marquee-track>
+            <!-- Track is duplicated by JS for seamless loop -->
+            <span class="marquee__item">JavaScript</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">TypeScript</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">React</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">React Native</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">Three.js</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">Node.js</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">Python</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">Django</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">WebSockets</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">PostgreSQL</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">Redis</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">REST API</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+            <span class="marquee__item">GSAP</span>
+            <span class="marquee__item marquee__item--dot">·</span>
+          </div>
+        </div>
+
+        <p class="stack__note" data-reveal>
+          Мы не привязываемся к одному инструменту, а подбираем идеальный стек
+          под архитектуру вашего проекта, гарантируя отказоустойчивость
+          и лёгкость масштабирования в будущем.
+        </p>
+      </section>
+
+      <!-- ====================== FOOTER / CONTACT ====================== -->
+      <section id="contact" class="footer" data-section="contact">
+        <div class="footer__unfold" aria-hidden="true"></div>
+        <div class="footer__inner">
+          <span class="footer__eyebrow">[ 04 ] · Contact</span>
+          <h2 class="footer__title">Готовы<br />обсудить проект?</h2>
+
+          <p class="footer__copy">
+            Мы берём в работу только те проекты, где можем принести реальную
+            инженерную ценность. Если вам нужна надёжная архитектура
+            и внимание к деталям — напишите нам.
+          </p>
+
+          <a
+            class="magnetic"
+            data-magnetic
+            data-cursor-target
+            href="https://t.me/YOUR_CHANNEL_LINK_HERE"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="magnetic__inner">
+              <span class="magnetic__label">Связаться в Telegram</span>
+              <span class="magnetic__arrow" aria-hidden="true">→</span>
+            </span>
+          </a>
+
+          <footer class="footer__bottom">
+            <small>© 2024 Engineering Team. Hosted on Render. All rights reserved.</small>
+          </footer>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

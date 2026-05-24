@@ -1,0 +1,184 @@
+/**
+ * src/styles/hero.css
+ * ----------------------------------------------------------------------------
+ * Hero section. Full-viewport composition where:
+ *   - the team illustration sits as the background canvas, masked at edges
+ *     so it bleeds into the cream page;
+ *   - the headline overlaps the figures using z-index layering;
+ *   - the scroll indicator draws itself at the bottom.
+ *
+ * Dependencies: tokens.css
+ * Related JS:  src/animations/hero.ts
+ * ----------------------------------------------------------------------------
+ */
+.hero {
+  position: relative;
+  min-block-size: 100dvh;
+  padding-block-start: clamp(7rem, 11vw, 11rem);
+  padding-block-end: clamp(3rem, 5vw, 5rem);
+  padding-inline: var(--gutter);
+  overflow: clip;
+  isolation: isolate;
+}
+
+.hero__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+  block-size: 100%;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.hero__illustration {
+  inline-size: clamp(420px, 60vw, 920px);
+  block-size: auto;
+  object-fit: contain;
+  filter: contrast(1.02) saturate(0.95);
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    #000 58%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse at center,
+    #000 58%,
+    transparent 78%
+  );
+}
+
+.hero__media-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    var(--c-bg) 80%
+  );
+  pointer-events: none;
+}
+
+.hero__title {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-3xl);
+  line-height: 0.88;
+  letter-spacing: -0.045em;
+  color: var(--c-noir);
+  text-wrap: balance;
+  margin-block-start: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.hero__title-line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero__title-line > * {
+  display: inline-block;
+}
+
+.hero__title-line {
+  /* Wrap inner content for split reveal */
+}
+
+.hero__title-line.hero__title-line--accent {
+  color: var(--c-accent);
+  font-style: italic;
+}
+
+.hero__title-line.hero__title-sub {
+  font-size: clamp(1.5rem, 1rem + 3vw, 3.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--c-ink);
+  line-height: 1;
+  margin-block-start: clamp(0.4rem, 1vw, 0.8rem);
+}
+
+.hero__lead {
+  position: relative;
+  z-index: 2;
+  max-inline-size: 52ch;
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  color: var(--c-ink);
+  margin-block-start: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.hero__meta {
+  position: relative;
+  z-index: 2;
+  margin-block-start: clamp(1rem, 2vw, 1.5rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  opacity: 0.7;
+}
+
+.hero__meta-label {
+  font-weight: 700;
+  color: var(--c-noir);
+}
+
+.hero__scroll {
+  position: absolute;
+  inset-block-end: clamp(1.5rem, 3vw, 2.5rem);
+  inset-inline-end: var(--gutter);
+  z-index: 3;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--c-noir);
+}
+
+.hero__scroll-line {
+  position: relative;
+  display: block;
+  inline-size: 1px;
+  block-size: 70px;
+  background-color: var(--c-line);
+  overflow: hidden;
+}
+
+.hero__scroll-line::after {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: -100%;
+  inline-size: 100%;
+  block-size: 100%;
+  background-color: var(--c-noir);
+  animation: scrollLine 2.4s var(--ease-in-out-expo) infinite;
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}

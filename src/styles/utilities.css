@@ -1,0 +1,53 @@
+/**
+ * src/styles/utilities.css
+ * ----------------------------------------------------------------------------
+ * Helpers used across sections:
+ *   - `.sr-only`               accessible-only text
+ *   - `[data-reveal]`          initial state for scroll-reveal targets
+ *   - `[data-split]` children  initial state for headline line-reveals
+ *   - `.is-revealed`           toggled by JS to play the animation
+ *
+ * Dependencies: tokens.css
+ * ----------------------------------------------------------------------------
+ */
+.sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition:
+    opacity 1s var(--ease-out-expo),
+    transform 1s var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+[data-split] .hero__title-line {
+  display: block;
+  overflow: hidden;
+}
+
+[data-split] .hero__title-line > span,
+[data-split] .hero__title-line.is-pre > span {
+  display: inline-block;
+  transform: translate3d(0, 110%, 0);
+  transition: transform 1.1s var(--ease-in-out-expo);
+}
+
+[data-split].is-revealed .hero__title-line > span {
+  transform: translate3d(0, 0, 0);
+}

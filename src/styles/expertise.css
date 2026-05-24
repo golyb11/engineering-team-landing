@@ -1,0 +1,168 @@
+/**
+ * src/styles/expertise.css
+ * ----------------------------------------------------------------------------
+ * Expertise section — pinned left column (title) + scrollable right column
+ * (service items). Body theme flips to dark while this section is in view
+ * (handled by `src/animations/expertise.ts` via `data-theme="dark"`).
+ *
+ * Dependencies: tokens.css
+ * Related JS:  src/animations/expertise.ts
+ * ----------------------------------------------------------------------------
+ */
+.expertise {
+  position: relative;
+  padding-block: var(--section-pad-block);
+  padding-inline: var(--gutter);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+.expertise__container {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+}
+
+.expertise__sticky {
+  position: sticky;
+  inset-block-start: clamp(6rem, 12vh, 9rem);
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.expertise__eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.expertise__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-3xl);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  color: var(--theme-headline);
+  margin: 0;
+}
+
+.expertise__tagline {
+  font-size: var(--fs-md);
+  max-inline-size: 32ch;
+  opacity: 0.8;
+}
+
+.expertise__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.expertise__item {
+  position: relative;
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+  border-block-start: 1px solid var(--theme-line);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: clamp(1.5rem, 3vw, 3rem);
+  row-gap: 1rem;
+  transition: background-color 0.6s var(--ease-out-expo);
+}
+
+.expertise__item:last-child {
+  border-block-end: 1px solid var(--theme-line);
+}
+
+.expertise__index {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+  align-self: start;
+  opacity: 0.55;
+}
+
+.expertise__item-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.7rem, 1rem + 2.4vw, 3rem);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--theme-headline);
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.expertise__item-text {
+  grid-column: 2;
+  font-size: var(--fs-md);
+  max-inline-size: 60ch;
+  opacity: 0.82;
+}
+
+.expertise__shape {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: clamp(1rem, 3vw, 3rem);
+  inline-size: clamp(60px, 8vw, 110px);
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  opacity: 0;
+  transform: translate3d(20px, -50%, 0) rotate(20deg);
+  transition:
+    opacity 0.6s var(--ease-out-expo),
+    transform 0.8s var(--ease-out-expo);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.expertise__shape--triangle {
+  border-radius: 0;
+  border: 0;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  background-color: currentColor;
+}
+
+.expertise__shape--square {
+  border-radius: 4px;
+  transform: translate3d(20px, -50%, 0) rotate(45deg);
+}
+
+@media (hover: hover) {
+  .expertise__item:hover .expertise__shape {
+    opacity: 0.4;
+    transform: translate3d(0, -50%, 0) rotate(0deg);
+  }
+
+  .expertise__item:hover .expertise__item-title {
+    animation: glitch 0.45s var(--ease-out-expo);
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0, 0);
+    text-shadow: 0 0 0 transparent;
+  }
+  25% {
+    transform: translate(-2px, 1px);
+    text-shadow: 2px 0 0 var(--c-accent);
+  }
+  50% {
+    transform: translate(2px, -1px);
+    text-shadow: -2px 0 0 var(--c-accent);
+  }
+  100% {
+    transform: translate(0, 0);
+    text-shadow: 0 0 0 transparent;
+  }
+}

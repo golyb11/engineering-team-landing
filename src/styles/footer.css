@@ -1,0 +1,118 @@
+/**
+ * src/styles/footer.css
+ * ----------------------------------------------------------------------------
+ * Footer / contact section. Includes the giant call-to-action, the magnetic
+ * Telegram button, and the copyright line.
+ *
+ * The `.footer__unfold` element is a coloured strip pinned to the top of the
+ * section; the parent footer has a slight translate-down on enter, creating
+ * the "unfolds from under previous section" effect handled in
+ * `src/animations/reveal.ts`.
+ *
+ * Dependencies: tokens.css
+ * ----------------------------------------------------------------------------
+ */
+.footer {
+  position: relative;
+  background-color: var(--c-noir);
+  color: var(--c-bg);
+  padding-block: clamp(6rem, 12vw, 12rem);
+  padding-inline: var(--gutter);
+  overflow: clip;
+  isolation: isolate;
+  border-start-start-radius: clamp(1rem, 3vw, 2.5rem);
+  border-start-end-radius: clamp(1rem, 3vw, 2.5rem);
+}
+
+.footer__unfold {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: 1px;
+  background-color: var(--c-bg);
+  opacity: 0.08;
+}
+
+.footer__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 5vw, 4rem);
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+}
+
+.footer__eyebrow {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.6;
+}
+
+.footer__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.5rem, 2rem + 9vw, 11rem);
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.footer__copy {
+  max-inline-size: 52ch;
+  font-size: var(--fs-md);
+  opacity: 0.78;
+  line-height: 1.55;
+}
+
+.magnetic {
+  align-self: flex-start;
+  display: inline-flex;
+  position: relative;
+  padding: 0;
+  margin-block-start: clamp(0.5rem, 2vw, 1.5rem);
+  border-radius: 999px;
+  background-color: var(--c-bg);
+  color: var(--c-noir);
+  will-change: transform;
+  transition: background-color 0.4s var(--ease-out-expo),
+    color 0.4s var(--ease-out-expo);
+}
+
+.magnetic__inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: clamp(1.2rem, 1.6vw, 1.7rem);
+  padding-inline: clamp(2rem, 3vw, 3rem);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 0.8rem + 1vw, 1.5rem);
+  letter-spacing: -0.01em;
+  will-change: transform;
+}
+
+.magnetic__arrow {
+  display: inline-block;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.magnetic:hover {
+  background-color: var(--c-accent);
+  color: var(--c-bg);
+}
+
+.magnetic:hover .magnetic__arrow {
+  transform: translateX(6px) rotate(-12deg);
+}
+
+.footer__bottom {
+  margin-block-start: clamp(3rem, 6vw, 6rem);
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid rgba(244, 241, 234, 0.14);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  opacity: 0.55;
+}
