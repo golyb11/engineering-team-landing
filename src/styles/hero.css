@@ -1,14 +1,13 @@
 /**
  * src/styles/hero.css
  * ----------------------------------------------------------------------------
- * Hero section. Full-viewport composition where:
- *   - the team illustration sits as the background canvas, masked at edges
- *     so it bleeds into the cream page;
- *   - the headline, lead text, and meta are wrapped in a `.hero__glass`
- *     container with premium Glassmorphism (backdrop-filter: blur(16px),
- *     semi-transparent bg, luminous border) guaranteeing 100% readability
- *     over dark illustration areas;
- *   - the scroll indicator draws itself at the bottom.
+ * Hero section — two-column desktop layout:
+ *   - LEFT: glassmorphism card with title, lead text, meta
+ *   - RIGHT: team illustration with radial fade mask
+ * On mobile (handled in responsive.css): stacked vertically.
+ *
+ * The glass panel uses a darker semi-transparent background with strong
+ * backdrop-filter so it's clearly visible regardless of what's behind it.
  *
  * Dependencies: tokens.css
  * Related JS:  src/animations/hero.ts
@@ -27,16 +26,17 @@
 .hero__inner {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
   max-inline-size: var(--max-width);
   margin-inline: auto;
-  block-size: 100%;
+  min-block-size: calc(100dvh - clamp(7rem, 11vw, 11rem) - clamp(3rem, 5vw, 5rem));
 }
 
+/* Illustration — right column */
 .hero__media {
-  position: absolute;
-  inset: 0;
+  position: relative;
   z-index: 0;
   display: grid;
   place-items: center;
@@ -45,19 +45,20 @@
 }
 
 .hero__illustration {
-  inline-size: clamp(420px, 60vw, 920px);
+  inline-size: 100%;
+  max-inline-size: 700px;
   block-size: auto;
   object-fit: contain;
   filter: contrast(1.02) saturate(0.95);
   -webkit-mask-image: radial-gradient(
     ellipse at center,
-    #000 58%,
-    transparent 78%
+    #000 55%,
+    transparent 80%
   );
   mask-image: radial-gradient(
     ellipse at center,
-    #000 58%,
-    transparent 78%
+    #000 55%,
+    transparent 80%
   );
 }
 
@@ -66,41 +67,37 @@
   inset: 0;
   background: radial-gradient(
     ellipse at center,
-    transparent 55%,
-    var(--c-bg) 80%
+    transparent 50%,
+    var(--c-bg) 85%
   );
   pointer-events: none;
 }
 
-/* Glassmorphism container — compact, fits text content tightly */
+/* Glassmorphism card — clearly visible over any background */
 .hero__glass {
   position: relative;
   z-index: 2;
-  display: inline-block;
-  background: rgba(244, 241, 234, 0.55);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: var(--radius);
-  padding: clamp(1.2rem, 2.5vw, 2rem) clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.15),
-    0 12px 32px rgba(0, 0, 0, 0.06);
-  width: fit-content;
-  max-inline-size: 42rem;
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 16px 40px rgba(20, 22, 28, 0.1),
+    0 2px 8px rgba(20, 22, 28, 0.06);
 }
 
 .hero__title {
-  position: relative;
-  z-index: 2;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: var(--fs-3xl);
-  line-height: 0.88;
+  font-size: clamp(2.8rem, 2rem + 5vw, 7rem);
+  line-height: 0.9;
   letter-spacing: -0.045em;
   color: var(--c-noir);
   text-wrap: balance;
-  margin-block-start: clamp(0.5rem, 2vw, 1.5rem);
+  margin: 0;
 }
 
 .hero__title-line {
@@ -131,19 +128,15 @@
 }
 
 .hero__lead {
-  position: relative;
-  z-index: 2;
-  max-inline-size: 52ch;
+  max-inline-size: 48ch;
   font-size: var(--fs-md);
   line-height: 1.55;
   color: var(--c-ink);
-  margin-block-start: clamp(1.5rem, 3vw, 2.5rem);
+  margin-block-start: clamp(1.2rem, 2.5vw, 2rem);
 }
 
 .hero__meta {
-  position: relative;
-  z-index: 2;
-  margin-block-start: clamp(1rem, 2vw, 1.5rem);
+  margin-block-start: clamp(0.8rem, 1.5vw, 1.2rem);
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;

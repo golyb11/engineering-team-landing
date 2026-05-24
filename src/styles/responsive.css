@@ -31,7 +31,7 @@
     display: none;
   }
 
-  /* HERO — switch from absolute overlay to stacked layout */
+  /* HERO — single column stacked layout */
   .hero {
     min-block-size: auto;
     padding-block-start: 5rem;
@@ -43,21 +43,22 @@
     flex-direction: column;
     align-items: stretch;
     gap: 1.5rem;
+    min-block-size: auto;
   }
 
   .hero__media {
-    position: relative;
-    inset: auto;
+    order: -1;
+    max-block-size: 35vh;
+    overflow: hidden;
     display: flex;
     justify-content: center;
-    max-block-size: 40vh;
-    overflow: hidden;
   }
 
   .hero__illustration {
-    inline-size: min(80vw, 400px);
-    -webkit-mask-image: radial-gradient(ellipse at center, #000 50%, transparent 75%);
-    mask-image: radial-gradient(ellipse at center, #000 50%, transparent 75%);
+    inline-size: min(70vw, 350px);
+    max-inline-size: 350px;
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 50%, transparent 78%);
+    mask-image: radial-gradient(ellipse at center, #000 50%, transparent 78%);
   }
 
   .hero__media-glow {
@@ -65,16 +66,13 @@
   }
 
   .hero__glass {
-    display: block;
-    width: 100%;
-    max-inline-size: none;
     padding: 1.5rem;
-    background: rgba(244, 241, 234, 0.75);
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 1rem;
   }
 
   .hero__title {
-    font-size: clamp(2.5rem, 9vw, 4rem);
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
   }
 
   .hero__lead {
@@ -177,7 +175,7 @@
   .hero__glass {
     padding: 1rem;
     border-radius: 0.75rem;
-    background: rgba(244, 241, 234, 0.82);
+    background: rgba(255, 255, 255, 0.7);
   }
 
   .hero__title {
