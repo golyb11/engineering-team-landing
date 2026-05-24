@@ -1,20 +1,23 @@
 /**
  * src/animations/preloader.ts
  * ----------------------------------------------------------------------------
- * Preloader controller.
+ * Terminal-style preloader controller.
  *
  * Behaviour:
- *   1. Animates a counter from 0 → 100 in roughly 1.4 seconds.
- *   2. Once the counter hits 100, collapses the overlay upward
- *      (clip-path inset top → bottom) revealing the page beneath.
- *   3. Resolves the returned Promise so downstream initialisers can wire
+ *   1. Sequentially reveals console-style lines (opacity + translateY) with
+ *      stagger timing, simulating a system boot sequence (~1.5-2s total).
+ *   2. After all lines are visible, the entire preloader screen performs a
+ *      combined scale(1.05) + clipPath reveal, creating a dramatic "system
+ *      ready → world opens" transition.
+ *   3. Resolves returned Promise so downstream initialisers can wire
  *      ScrollTrigger against an already-laid-out DOM.
  *
  * `skip` short-circuits the animation for users with
  * `prefers-reduced-motion: reduce`.
  *
  * Dependencies: ./gsap-setup
- * Related DOM: .preloader, [data-preloader-count]
+ * Related DOM: .preloader, [data-preloader-line]
+ * Related CSS: src/styles/preloader.css
  * ----------------------------------------------------------------------------
  */
 import { gsap } from './gsap-setup';
@@ -25,7 +28,7 @@ interface PreloaderOptions {
 
 export function runPreloader({ skip = false }: PreloaderOptions = {}): Promise<void> {
   const root = document.querySelector<HTMLElement>('.preloader');
-  const countEl = document.querySelector<HTMLElement>('[data-preloader-count]');
+  const lines = document.querySelectorAll<HTMLElement>('[data-preloader-line]');
 
   if (!root) return Promise.resolve();
 
@@ -35,28 +38,41 @@ export function runPreloader({ skip = false }: PreloaderOptions = {}): Promise<v
   }
 
   return new Promise<void>((resolve) => {
-    const counter = { value: 0 };
     const tl = gsap.timeline({
-      defaults: { ease: 'expo.inOut' },
+      defaults: { ease: 'power2.out' },
       onComplete: () => {
         root.classList.add('is-hidden');
         resolve();
       },
     });
 
-    tl.to(counter, {
-      value: 100,
-      duration: 1.4,
-      ease: 'power2.inOut',
-      onUpdate: () => {
-        if (countEl) countEl.textContent = String(Math.round(counter.value));
-      },
+    // Sequentially reveal each terminal line
+    tl.to(lines, {
+      opacity: 1,
+      y: 0,
+      duration: 0.15,
+      stagger: 0.2,
+      ease: 'power1.out',
+    });
+
+    // Hold briefly so user can read "[OK]"
+    tl.to({}, { duration: 0.4 });
+
+    // Dramatic reveal: scale up slightly then clip away
+    tl.to(root, {
+      scale: 1.05,
+      duration: 0.5,
+      ease: 'power2.in',
     })
-      .to(root, {
-        duration: 0.9,
-        clipPath: 'inset(0 0 100% 0)',
-        ease: 'expo.inOut',
-      })
+      .to(
+        root,
+        {
+          clipPath: 'inset(0 0 100% 0)',
+          duration: 0.7,
+          ease: 'expo.inOut',
+        },
+        '-=0.3'
+      )
       .set(root, { autoAlpha: 0 });
   });
 }

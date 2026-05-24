@@ -2,7 +2,7 @@
   "name": "engineering-team-landing",
   "private": true,
   "version": "1.0.0",
-  "description": "Premium landing page for a boutique 3-person dev team. Built with Vite + TypeScript + GSAP + Lenis. Optimized for Render.com free tier and Lighthouse 100/100.",
+  "description": "Premium Awwwards-level landing for an independent engineering studio. Built with Vite + TypeScript + GSAP + Lenis. Optimized for Render.com and Lighthouse 100/100.",
   "type": "module",
   "scripts": {
     "dev": "vite",

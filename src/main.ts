@@ -5,11 +5,13 @@
  * enhancement module in the correct order:
  *
  *   1. Register GSAP plugins once (animations/gsap-setup).
- *   2. Run preloader counter — it resolves once the DOM is interactive.
+ *   2. Run terminal preloader — it resolves once the console boot sequence
+ *      completes and the reveal animation finishes.
  *   3. Boot Lenis smooth-scroll (skipped on touch / reduced-motion devices).
  *   4. Initialise the custom cursor (desktop only).
- *   5. Wire section animations: Hero, Expertise, Stack marquee, Footer magnetic
- *      button, generic scroll-reveal.
+ *   5. Wire section animations: Hero (glassmorphism reveal), Solutions
+ *      (sticky stacking cards), Process (scroll timeline), Portfolio,
+ *      Stack marquee, Footer magnetic button, generic scroll-reveal.
  *
  * Why a single entry?
  *   - Keeps the dev experience zero-config: `npm run dev` just works.
@@ -18,11 +20,12 @@
  *
  * Dependencies:
  *   - ./animations/gsap-setup    (GSAP + ScrollTrigger registration)
- *   - ./animations/preloader     (counter & curtain reveal)
+ *   - ./animations/preloader     (terminal boot sequence & reveal)
  *   - ./animations/smooth-scroll (Lenis bootstrap, syncs with ScrollTrigger)
  *   - ./animations/cursor        (custom cursor with hover state)
  *   - ./animations/hero          (parallax + headline reveal)
- *   - ./animations/expertise     (pinned layout + theme invert)
+ *   - ./animations/solutions     (sticky stacking cards + theme flip)
+ *   - ./animations/process       (scroll timeline with progress fill)
  *   - ./animations/marquee       (infinite stack ticker)
  *   - ./animations/magnetic      (footer CTA magnetic effect)
  *   - ./animations/reveal        (generic [data-reveal] fade-in-up)
@@ -38,7 +41,8 @@ import { runPreloader } from './animations/preloader';
 import { initSmoothScroll } from './animations/smooth-scroll';
 import { initCursor } from './animations/cursor';
 import { initHero } from './animations/hero';
-import { initExpertise } from './animations/expertise';
+import { initSolutions } from './animations/solutions';
+import { initProcess } from './animations/process';
 import { initMarquee } from './animations/marquee';
 import { initMagnetic } from './animations/magnetic';
 import { initReveal } from './animations/reveal';
@@ -61,7 +65,8 @@ async function bootstrap(): Promise<void> {
   await runPreloader({ skip: prefersReducedMotion });
 
   initHero({ disableParallax: isTouch || prefersReducedMotion });
-  initExpertise();
+  initSolutions();
+  initProcess();
   initMarquee({ pauseOnHover: !isTouch });
   if (!isTouch && !prefersReducedMotion) initMagnetic();
   initReveal();

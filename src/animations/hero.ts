@@ -3,12 +3,15 @@
  * ----------------------------------------------------------------------------
  * Hero section animations:
  *   - Splits headline lines and reveals them with a staggered translateY.
+ *   - Reveals the `.hero__glass` container (glassmorphism panel) with a
+ *     combined opacity + scale entrance.
  *   - Reveals lead paragraph + meta line slightly after the headline.
  *   - Adds a soft mouse-driven parallax to the team illustration (desktop).
  *
  * Dependencies: ./gsap-setup
  * Related CSS: src/styles/hero.css
- * Related DOM: .hero, .hero__title-line, .hero__lead, .hero__meta, [data-parallax]
+ * Related DOM: .hero, .hero__glass, .hero__title-line, .hero__lead,
+ *              .hero__meta, [data-parallax]
  * ----------------------------------------------------------------------------
  */
 import { gsap } from './gsap-setup';
@@ -31,6 +34,7 @@ export function initHero({ disableParallax = false }: HeroOptions = {}): void {
     line.appendChild(inner);
   });
 
+  const glass = hero.querySelector<HTMLElement>('.hero__glass');
   const lines = hero.querySelectorAll<HTMLElement>('.hero__title-line > span');
   const lead = hero.querySelector<HTMLElement>('.hero__lead');
   const meta = hero.querySelector<HTMLElement>('.hero__meta');
@@ -38,8 +42,9 @@ export function initHero({ disableParallax = false }: HeroOptions = {}): void {
 
   const tl = gsap.timeline({ delay: 0.1 });
 
-  tl.set([lines, lead, meta], { autoAlpha: 0 });
+  tl.set([glass, lines, lead, meta], { autoAlpha: 0 });
   tl.set(lines, { yPercent: 110 });
+  if (glass) tl.set(glass, { scale: 0.97 });
 
   tl.to(media, {
     autoAlpha: 1,
@@ -47,6 +52,15 @@ export function initHero({ disableParallax = false }: HeroOptions = {}): void {
     duration: 1.4,
     ease: 'expo.out',
   });
+
+  // Reveal the glassmorphism panel
+  if (glass) {
+    tl.to(
+      glass,
+      { autoAlpha: 1, scale: 1, duration: 1, ease: 'expo.out' },
+      '-=1.1'
+    );
+  }
 
   tl.to(
     lines,
@@ -57,7 +71,7 @@ export function initHero({ disableParallax = false }: HeroOptions = {}): void {
       ease: 'expo.out',
       stagger: 0.08,
     },
-    '-=1.1'
+    '-=0.8'
   );
 
   tl.to(

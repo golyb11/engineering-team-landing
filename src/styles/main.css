@@ -6,18 +6,20 @@
  * while still authoring code in small, focused modules.
  *
  * Order matters:
- *   1. tokens.css       — CSS custom properties (palette, type scale, easings)
- *   2. reset.css        — minimal Eric Meyer-flavoured reset
- *   3. typography.css   — font stacks + base type rules
- *   4. utilities.css    — `data-reveal` initial state, helper classes
- *   5. layout.css       — page shell, header, container widths
- *   6. preloader.css    — full-screen counter overlay
- *   7. cursor.css       — custom cursor dot + ring
- *   8. hero.css         — Hero section composition
- *   9. expertise.css    — Pinned expertise list + dark theme variant
- *  10. stack.css        — Marquee with text-stroke
- *  11. footer.css       — Footer CTA + magnetic button
- *  12. responsive.css   — mobile overrides (must come LAST)
+ *   1.  tokens.css       — CSS custom properties (palette, type scale, easings)
+ *   2.  reset.css        — minimal Eric Meyer-flavoured reset
+ *   3.  typography.css   — font stacks + base type rules
+ *   4.  utilities.css    — `data-reveal` initial state, helper classes
+ *   5.  layout.css       — page shell, header, container widths
+ *   6.  preloader.css    — terminal-style preloader overlay
+ *   7.  cursor.css       — custom cursor dot + ring
+ *   8.  hero.css         — Hero section composition + glassmorphism
+ *   9.  solutions.css    — Sticky stacking cards (replaces old expertise)
+ *  10.  process.css      — Scroll timeline with progress line
+ *  11.  portfolio.css    — Project showcase grid with X-Ray hover
+ *  12.  stack.css        — Marquee with text-stroke
+ *  13.  footer.css       — Footer CTA + magnetic button
+ *  14.  responsive.css   — mobile overrides (must come LAST)
  *
  * Dependencies: none (pure CSS).
  * ----------------------------------------------------------------------------
@@ -30,7 +32,9 @@
 @import './preloader.css';
 @import './cursor.css';
 @import './hero.css';
-@import './expertise.css';
+@import './solutions.css';
+@import './process.css';
+@import './portfolio.css';
 @import './stack.css';
 @import './footer.css';
 @import './responsive.css';

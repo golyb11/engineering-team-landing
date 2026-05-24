@@ -1,0 +1,146 @@
+/**
+ * src/styles/portfolio.css
+ * ----------------------------------------------------------------------------
+ * Portfolio / projects showcase section. Uses CSS Grid for a 2x2 layout.
+ * Each card has a glassmorphism placeholder with abstract gradient background
+ * and a monospace code snippet in the center.
+ *
+ * On hover, the "X-Ray" effect triggers: card scales up slightly, the
+ * placeholder inner code snippet becomes more visible, and a subtle shift
+ * of internal elements creates depth.
+ *
+ * Dependencies: tokens.css
+ * Related JS: none (pure CSS interactions + data-reveal from reveal.ts)
+ * ----------------------------------------------------------------------------
+ */
+.portfolio {
+  position: relative;
+  padding-block: var(--section-pad-block);
+  padding-inline: var(--gutter);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+.portfolio__header {
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+  margin-block-end: clamp(3rem, 6vw, 5rem);
+}
+
+.portfolio__eyebrow {
+  display: block;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.7;
+  margin-block-end: 1.5rem;
+}
+
+.portfolio__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  color: var(--theme-headline);
+  margin: 0;
+}
+
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1rem, 2vw, 2rem);
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+}
+
+.portfolio__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  transition: transform 0.6s var(--ease-out-expo);
+  will-change: transform;
+}
+
+.portfolio__item-visual {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.portfolio__item-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(180, 83, 58, 0.15) 0%, transparent 50%),
+    linear-gradient(225deg, rgba(44, 48, 58, 0.3) 0%, transparent 50%),
+    rgba(20, 22, 28, 0.06);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--theme-line);
+  transition:
+    background 0.6s var(--ease-out-expo),
+    backdrop-filter 0.6s var(--ease-out-expo);
+}
+
+/* X-Ray code snippet in placeholder center */
+.portfolio__item-code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', monospace;
+  font-size: clamp(1rem, 0.8rem + 1vw, 1.8rem);
+  font-weight: 500;
+  color: var(--theme-headline);
+  opacity: 0.12;
+  letter-spacing: -0.02em;
+  transition:
+    opacity 0.5s var(--ease-out-expo),
+    transform 0.5s var(--ease-out-expo),
+    color 0.5s var(--ease-out-expo);
+  transform: scale(0.95);
+}
+
+.portfolio__item-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 0.8rem + 1vw, 1.4rem);
+  letter-spacing: -0.01em;
+  margin: 0;
+  margin-block-start: clamp(0.8rem, 1.5vw, 1.2rem);
+  color: var(--theme-headline);
+}
+
+.portfolio__item-tech {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  opacity: 0.6;
+  margin-block-start: 0.3rem;
+}
+
+/* Hover X-Ray effect */
+@media (hover: hover) {
+  .portfolio__item:hover {
+    transform: scale(1.03);
+  }
+
+  .portfolio__item:hover .portfolio__item-placeholder {
+    background:
+      linear-gradient(135deg, rgba(180, 83, 58, 0.25) 0%, transparent 50%),
+      linear-gradient(225deg, rgba(44, 48, 58, 0.5) 0%, transparent 50%),
+      rgba(20, 22, 28, 0.12);
+  }
+
+  .portfolio__item:hover .portfolio__item-code {
+    opacity: 0.55;
+    transform: scale(1);
+    color: var(--c-accent);
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio__grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,39 +1,94 @@
 /**
  * src/styles/preloader.css
  * ----------------------------------------------------------------------------
- * Full-viewport preloader overlay. Animated counter centred on screen;
- * collapses upward when the page is ready (animation driven by GSAP in
- * `src/animations/preloader.ts`).
+ * Terminal-style preloader overlay. Displays rapidly scrolling console init
+ * lines on a dark background, then reveals the page via scale + clip-path
+ * mask animation driven by GSAP in `src/animations/preloader.ts`.
+ *
+ * Visual style: monospace font, green-tinted accent (#00ff88) for OK status,
+ * subtle scanline overlay for CRT feel.
  *
  * Dependencies: tokens.css
+ * Related JS: src/animations/preloader.ts
  * ----------------------------------------------------------------------------
  */
 .preloader {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  display: grid;
-  place-items: center;
-  background-color: var(--c-noir);
-  color: var(--c-bg);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(5rem, 22vw, 18rem);
-  letter-spacing: -0.06em;
-  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(2rem, 5vw, 4rem);
+  background-color: #0a0a0f;
+  color: #e0e0e0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', monospace;
+  font-size: clamp(0.75rem, 0.6rem + 0.8vw, 1rem);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
   will-change: clip-path, transform, opacity;
-  clip-path: inset(0 0 0 0);
+  overflow: hidden;
 }
 
-.preloader__count {
-  font-variant-numeric: tabular-nums;
-  display: inline-block;
+/* CRT scanline overlay */
+.preloader::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
-.preloader__percent {
+.preloader__terminal {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  width: 100%;
+}
+
+.preloader__line {
+  display: block;
+  opacity: 0;
+  transform: translateY(4px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.preloader__line--prompt {
+  color: #888;
+}
+
+.preloader__line--success {
+  color: #00ff88;
+  font-weight: 700;
+}
+
+.preloader__line--accent {
+  color: var(--c-accent, #b4533a);
+}
+
+.preloader__cursor {
   display: inline-block;
-  margin-inline-start: 0.05em;
-  opacity: 0.55;
+  width: 8px;
+  height: 1.1em;
+  background: #00ff88;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  animation: blink 0.8s steps(1) infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
 }
 
 .preloader.is-hidden {

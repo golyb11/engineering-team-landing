@@ -4,7 +4,10 @@
  * Hero section. Full-viewport composition where:
  *   - the team illustration sits as the background canvas, masked at edges
  *     so it bleeds into the cream page;
- *   - the headline overlaps the figures using z-index layering;
+ *   - the headline, lead text, and meta are wrapped in a `.hero__glass`
+ *     container with premium Glassmorphism (backdrop-filter: blur(16px),
+ *     semi-transparent bg, luminous border) guaranteeing 100% readability
+ *     over dark illustration areas;
  *   - the scroll indicator draws itself at the bottom.
  *
  * Dependencies: tokens.css
@@ -69,6 +72,22 @@
   pointer-events: none;
 }
 
+/* Glassmorphism container — ensures text readability over illustration */
+.hero__glass {
+  position: relative;
+  z-index: 2;
+  background: rgba(244, 241, 234, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 24px 48px rgba(0, 0, 0, 0.08);
+  max-inline-size: 52rem;
+}
+
 .hero__title {
   position: relative;
   z-index: 2;
@@ -91,8 +110,8 @@
   display: inline-block;
 }
 
-.hero__title-line {
-  /* Wrap inner content for split reveal */
+.hero__title-line--split {
+  will-change: transform;
 }
 
 .hero__title-line.hero__title-line--accent {

@@ -1,0 +1,162 @@
+/**
+ * src/styles/process.css
+ * ----------------------------------------------------------------------------
+ * Process / workflow timeline section. Features a vertical progress line
+ * on the left side that fills with accent colour as the user scrolls.
+ * Each step animates in (fade + translateX) when the line reaches its
+ * trigger point. Indicator dots on the line light up on activation.
+ *
+ * On mobile (<900px) the line moves to the far left with smaller padding.
+ *
+ * Dependencies: tokens.css
+ * Related JS: src/animations/process.ts
+ * ----------------------------------------------------------------------------
+ */
+.process {
+  position: relative;
+  padding-block: var(--section-pad-block);
+  padding-inline: var(--gutter);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+.process__header {
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+  margin-block-end: clamp(3rem, 6vw, 5rem);
+}
+
+.process__eyebrow {
+  display: block;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.7;
+  margin-block-end: 1.5rem;
+}
+
+.process__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  color: var(--theme-headline);
+  margin: 0;
+}
+
+.process__timeline {
+  position: relative;
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 3px 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+}
+
+/* Vertical line track */
+.process__line {
+  position: relative;
+  background: var(--theme-line);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Filled portion — height controlled by JS via scaleY */
+.process__line-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--c-accent);
+  transform-origin: top center;
+  transform: scaleY(0);
+  border-radius: 2px;
+  will-change: transform;
+}
+
+/* Steps container */
+.process__steps {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 6vw, 5rem);
+}
+
+.process__step {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(1.2rem, 2vw, 2rem);
+  align-items: start;
+  opacity: 0;
+  transform: translate3d(40px, 0, 0);
+  transition:
+    opacity 0.8s var(--ease-out-expo),
+    transform 0.8s var(--ease-out-expo);
+}
+
+.process__step.is-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Dot indicator on the line */
+.process__step-indicator {
+  position: absolute;
+  inset-inline-start: calc(-1 * clamp(2rem, 4vw, 4rem) - 6px);
+  inset-block-start: 0.3em;
+  inline-size: 14px;
+  block-size: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--theme-line);
+  background: var(--theme-bg);
+  transition:
+    border-color 0.5s var(--ease-out-expo),
+    background 0.5s var(--ease-out-expo),
+    box-shadow 0.5s var(--ease-out-expo);
+  z-index: 1;
+}
+
+.process__step.is-active .process__step-indicator {
+  border-color: var(--c-accent);
+  background: var(--c-accent);
+  box-shadow: 0 0 12px rgba(180, 83, 58, 0.4);
+}
+
+.process__step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.process__step-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 1rem + 1.5vw, 2rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--theme-headline);
+  margin: 0;
+}
+
+.process__step-text {
+  font-size: var(--fs-md);
+  max-inline-size: 50ch;
+  opacity: 0.8;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .process__timeline {
+    gap: clamp(1.2rem, 3vw, 2rem);
+  }
+
+  .process__step-indicator {
+    inset-inline-start: calc(-1 * clamp(1.2rem, 3vw, 2rem) - 6px);
+  }
+}
+
+@media (max-width: 600px) {
+  .process__step {
+    grid-template-columns: 1fr;
+  }
+}

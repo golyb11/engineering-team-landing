@@ -5,9 +5,11 @@
  *
  * Key behaviours:
  *   - Hide custom cursor on touch devices.
- *   - Drop the pinned 2-column Expertise layout into a single column.
+ *   - Adapt solutions stacking cards for single-column on tablets.
  *   - Tighten hero illustration size and switch composition to stacked.
  *   - Reduce header presence (logo-only navigation).
+ *   - Adapt process timeline for compact layout.
+ *   - Portfolio grid goes single-column on phones.
  *   - Replace hover-only effects with active states.
  *
  * Dependencies: every other stylesheet.
@@ -22,11 +24,6 @@
 
   .marquee {
     --marquee-duration: 30s;
-  }
-
-  .expertise__item:active .expertise__shape {
-    opacity: 0.35;
-    transform: translate3d(0, -50%, 0) rotate(0deg);
   }
 }
 
@@ -46,36 +43,35 @@
     align-items: start;
   }
 
-  .expertise__container {
-    grid-template-columns: 1fr;
-  }
-
-  .expertise__sticky {
-    position: relative;
-    inset-block-start: auto;
-  }
-
-  .expertise__item {
-    grid-template-columns: 1fr;
-  }
-
-  .expertise__item-text {
-    grid-column: 1;
-  }
-
-  .expertise__shape {
-    display: none;
+  .hero__glass {
+    padding: clamp(1.5rem, 3vw, 2.5rem);
   }
 
   .hero__scroll {
     display: none;
+  }
+
+  /* Solutions cards — stack naturally */
+  .solutions__card {
+    position: relative;
+    top: auto !important;
+  }
+
+  /* Process timeline — tighter gap */
+  .process__timeline {
+    gap: clamp(1.2rem, 3vw, 2rem);
+  }
+
+  .process__step-indicator {
+    inset-inline-start: calc(-1 * clamp(1.2rem, 3vw, 2rem) - 6px);
   }
 }
 
 /* Phones ------------------------------------------------------------------- */
 @media (max-width: 600px) {
   .preloader {
-    font-size: clamp(4.5rem, 35vw, 9rem);
+    font-size: clamp(0.65rem, 2.5vw, 0.85rem);
+    padding: 1.5rem;
   }
 
   .hero {
@@ -84,6 +80,29 @@
 
   .hero__title {
     font-size: clamp(2.4rem, 12vw, 4.5rem);
+  }
+
+  .hero__glass {
+    padding: 1.2rem;
+    border-radius: 0.75rem;
+  }
+
+  .solutions__title,
+  .process__title,
+  .portfolio__title {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+  }
+
+  .solutions__card {
+    padding: 1.5rem;
+  }
+
+  .process__step {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio__grid {
+    grid-template-columns: 1fr;
   }
 
   .footer__title {

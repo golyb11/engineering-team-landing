@@ -1,0 +1,148 @@
+/**
+ * src/styles/solutions.css
+ * ----------------------------------------------------------------------------
+ * Sticky stacking cards section. Each `.solutions__card` uses position:sticky
+ * to stack on top of the previous one as user scrolls, creating a "deck of
+ * cards" effect. ScrollTrigger in `src/animations/solutions.ts` handles the
+ * y-offset and slight scale/rotation for premium feel.
+ *
+ * Cards have dark background with subtle gradient borders and a glassmorphism
+ * surface. Section background transitions to dark via data-theme toggle.
+ *
+ * Dependencies: tokens.css
+ * Related JS: src/animations/solutions.ts
+ * ----------------------------------------------------------------------------
+ */
+.solutions {
+  position: relative;
+  padding-block: var(--section-pad-block);
+  padding-inline: var(--gutter);
+  background-color: var(--c-noir);
+  color: var(--c-bg);
+}
+
+.solutions__header {
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+  margin-block-end: clamp(3rem, 6vw, 5rem);
+}
+
+.solutions__eyebrow {
+  display: block;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.6;
+  margin-block-end: 1.5rem;
+}
+
+.solutions__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  margin: 0;
+}
+
+/* Cards wrapper — tall enough for sticky stacking to work */
+.solutions__cards {
+  position: relative;
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.solutions__card {
+  position: sticky;
+  top: clamp(6rem, 12vh, 10rem);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: clamp(2rem, 4vw, 3.5rem);
+  margin-block-end: clamp(1.5rem, 3vw, 2.5rem);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: start;
+  transition:
+    transform 0.6s var(--ease-out-expo),
+    box-shadow 0.6s var(--ease-out-expo);
+  will-change: transform;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Each subsequent card is offset slightly lower for peek effect */
+.solutions__card:nth-child(2) {
+  top: clamp(7rem, 13vh, 11rem);
+}
+
+.solutions__card:nth-child(3) {
+  top: clamp(8rem, 14vh, 12rem);
+}
+
+.solutions__card-index {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-sm);
+  letter-spacing: 0.04em;
+  opacity: 0.5;
+  padding-block-start: 0.15em;
+}
+
+.solutions__card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.6rem);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin: 0;
+  grid-column: 2 / -1;
+}
+
+.solutions__card-text {
+  grid-column: 2;
+  font-size: var(--fs-md);
+  max-inline-size: 60ch;
+  opacity: 0.78;
+  line-height: 1.55;
+}
+
+.solutions__card-badge {
+  grid-column: 3;
+  align-self: start;
+  font-family: var(--font-display);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4em 0.9em;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  white-space: nowrap;
+  color: var(--c-accent);
+}
+
+@media (max-width: 900px) {
+  .solutions__card {
+    grid-template-columns: auto 1fr;
+  }
+
+  .solutions__card-title {
+    grid-column: 1 / -1;
+  }
+
+  .solutions__card-text {
+    grid-column: 1 / -1;
+  }
+
+  .solutions__card-badge {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
