@@ -1,277 +1,149 @@
 <!doctype html>
 <html lang="ru" data-theme="light">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#F4F1EA" />
-    <meta name="color-scheme" content="light dark" />
-
-    <title>Engineering Team — Инженерия цифровых продуктов</title>
-    <meta name="description" content="Независимая инженерная студия. Проектируем отказоустойчивую архитектуру, создаём кастомные CRM, разрабатываем высоконагруженных Telegram-ботов и быстрые SPA." />
-    <meta name="author" content="Engineering Team" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://example.com/" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Engineering Team — Инженерия цифровых продуктов" />
-    <meta property="og:description" content="Проектируем отказоустойчивую архитектуру, создаём кастомные CRM, разрабатываем высоконагруженных Telegram-ботов и быстрые SPA." />
-    <meta property="og:image" content="./team_illustration.png" />
-    <meta property="og:locale" content="ru_RU" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Engineering Team — Инженерия цифровых продуктов" />
-    <meta name="twitter:description" content="Независимая инженерная студия. Архитектура, CRM, Telegram-боты, SPA." />
-    <meta name="twitter:image" content="./team_illustration.png" />
-
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232C303A'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-family='Inter,Arial,sans-serif' font-weight='800' font-size='16' fill='%23F4F1EA'%3EE%3C/text%3E%3C/svg%3E" />
-    <link rel="apple-touch-icon" href="./team_illustration.png" />
-
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem('et-theme');
-          var t = stored === 'light' || stored === 'dark' ? stored : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          document.documentElement.dataset.theme = t;
-          var meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.content = t === 'dark' ? '#14161C' : '#F4F1EA';
-        } catch (e) {}
-      })();
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap" />
-    <link rel="preload" as="image" href="./team_illustration.png" fetchpriority="high" />
-    <script type="module" src="/src/main.ts" defer></script>
-
-    <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"Organization","name":"Engineering Team","description":"Независимая инженерная студия разработки.","url":"https://example.com/","logo":"https://example.com/team_illustration.png"}
-    </script>
-  </head>
-
-  <body class="page" data-theme="light">
-    <div class="scroll-progress" aria-hidden="true"></div>
-
-    <div class="preloader" aria-hidden="true">
-      <div class="preloader__terminal">
-        <span class="preloader__line preloader__line--prompt" data-preloader-line>&gt; initializing core modules...</span>
-        <span class="preloader__line" data-preloader-line>&gt; loading engineering.config.ts</span>
-        <span class="preloader__line" data-preloader-line>&gt; establishing websocket connections...</span>
-        <span class="preloader__line" data-preloader-line>&gt; compiling design tokens...</span>
-        <span class="preloader__line" data-preloader-line>&gt; mounting reactive components...</span>
-        <span class="preloader__line" data-preloader-line>&gt; rendering DOM tree...</span>
-        <span class="preloader__line preloader__line--success" data-preloader-line>&gt; [OK] All systems operational<span class="preloader__cursor"></span></span>
-      </div>
-    </div>
-
-    <div class="cursor" data-cursor aria-hidden="true">
-      <div class="cursor__dot"></div>
-      <div class="cursor__ring"></div>
-    </div>
-
-    <header class="site-header">
-      <a href="#hero" class="site-header__brand" data-cursor-target>
-        <span class="site-header__mark">E/T</span>
-        <span class="site-header__name">Engineering Team</span>
-      </a>
-      <div class="site-header__actions">
-        <nav class="site-header__nav" aria-label="Основная навигация">
-          <a href="#solutions" data-cursor-target>Решения</a>
-          <a href="#process" data-cursor-target>Процесс</a>
-          <a href="#portfolio" data-cursor-target>Проекты</a>
-          <a href="#stack" data-cursor-target>Стек</a>
-          <a href="#contact" data-cursor-target>Контакты</a>
-        </nav>
-        <button class="theme-toggle" data-theme-toggle aria-label="Переключить тему">
-          <svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" /></svg>
-          <svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
-        </button>
-      </div>
-    </header>
-
-    <main class="page__main">
-      <section id="hero" class="hero" data-section="hero">
-        <div class="hero__inner">
-          <div class="hero__glass">
-            <h1 class="hero__title" data-split>
-              <span class="hero__title-line">Инженерия</span>
-              <span class="hero__title-line">цифровых</span>
-              <span class="hero__title-line hero__title-line--accent">продуктов.</span>
-            </h1>
-            <p class="hero__lead" data-reveal>Проектируем отказоустойчивую архитектуру, создаём кастомные CRM, разрабатываем надёжных Telegram-ботов и быстрые SPA. Решаем задачи бизнеса с помощью чистого кода.</p>
-            <div class="hero__meta" data-reveal>
-              <span class="hero__meta-label">[ 01 ]</span>
-              <span class="hero__meta-text">Independent engineering studio · est. 2024</span>
-            </div>
-          </div>
-          <div class="hero__media" data-parallax>
-            <img src="./team_illustration.png" alt="Инженерная студия разработки" class="hero__illustration" width="1200" height="1200" fetchpriority="high" decoding="async" />
-            <div class="hero__media-glow" aria-hidden="true"></div>
-          </div>
-        </div>
-        <a href="#solutions" class="hero__scroll" data-cursor-target aria-label="Прокрутить вниз">
-          <span class="hero__scroll-text">SCROLL</span>
-          <span class="hero__scroll-line"></span>
-        </a>
-      </section>
-
-      <section id="solutions" class="solutions" data-section="solutions">
-        <div class="solutions__header">
-          <span class="solutions__eyebrow">[ 02 ] · Solutions</span>
-          <h2 class="solutions__title">Что мы<br />создаём.</h2>
-        </div>
-        <div class="solutions__cards" data-stacking-cards>
-          <article class="solutions__card" data-stacking-card>
-            <div class="solutions__card-index">01</div>
-            <h3 class="solutions__card-title">Telegram-боты &amp; Автоматизация</h3>
-            <p class="solutions__card-text">Разрабатываем ботов со сложной архитектурой (State Machines) и панелями управления. Интеграция с платёжными шлюзами и сторонними API. За счёт правильной асинхронной архитектуры и кэширования решения выдерживают 500+ RPS.</p>
-            <div class="solutions__card-badge">High-load ready</div>
-          </article>
-          <article class="solutions__card" data-stacking-card>
-            <div class="solutions__card-index">02</div>
-            <h3 class="solutions__card-title">Кастомные CRM и ERP-системы</h3>
-            <p class="solutions__card-text">Проектируем масштабируемые системы для внутреннего управления бизнесом. Надёжный API, ролевые модели доступа, дашборды и аналитика в реальном времени через WebSockets. Безопасность и скорость на уровне банковских систем.</p>
-            <div class="solutions__card-badge">Enterprise-grade</div>
-          </article>
-          <article class="solutions__card" data-stacking-card>
-            <div class="solutions__card-index">03</div>
-            <h3 class="solutions__card-title">Frontend &amp; SPA</h3>
-            <p class="solutions__card-text">Создаём реактивные веб-приложения с мгновенным откликом интерфейса (загрузка &lt; 1s, зелёные метрики Google Lighthouse). Инкапсулируем бизнес-логику на клиенте, внедряем сложные анимации и 3D-графику без потери производительности.</p>
-            <div class="solutions__card-badge">Lighthouse 100</div>
-          </article>
-        </div>
-      </section>
-
-      <section id="process" class="process" data-section="process">
-        <div class="process__header">
-          <span class="process__eyebrow">[ 03 ] · Process</span>
-          <h2 class="process__title">Как мы<br />работаем.</h2>
-        </div>
-        <div class="process__timeline">
-          <div class="process__line" aria-hidden="true"><div class="process__line-fill" data-timeline-fill></div></div>
-          <div class="process__steps">
-            <div class="process__step" data-timeline-step>
-              <div class="process__step-indicator" aria-hidden="true"></div>
-              <div class="process__step-content">
-                <h3 class="process__step-title">01 | Синхронизация</h3>
-                <p class="process__step-text">Связываемся в Telegram, проводим глубокий аудит вашей бизнес-логики и составляем технический бриф.</p>
-              </div>
-            </div>
-            <div class="process__step" data-timeline-step>
-              <div class="process__step-indicator" aria-hidden="true"></div>
-              <div class="process__step-content">
-                <h3 class="process__step-title">02 | Архитектура</h3>
-                <p class="process__step-text">Проектируем схему базы данных, выбираем оптимальный стек и описываем контракты API.</p>
-              </div>
-            </div>
-            <div class="process__step" data-timeline-step>
-              <div class="process__step-indicator" aria-hidden="true"></div>
-              <div class="process__step-content">
-                <h3 class="process__step-title">03 | Инжиниринг</h3>
-                <p class="process__step-text">Разбиваем работу на спринты. Пишем чистый, модульный код с регулярной демонстрацией промежуточных результатов.</p>
-              </div>
-            </div>
-            <div class="process__step" data-timeline-step>
-              <div class="process__step-indicator" aria-hidden="true"></div>
-              <div class="process__step-content">
-                <h3 class="process__step-title">04 | Релиз &amp; Саппорт</h3>
-                <p class="process__step-text">Развёртывание на production-серверах, базовое нагрузочное тестирование и передача готового продукта с документацией.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="stats" aria-labelledby="stats-title">
-        <h2 id="stats-title" class="visually-hidden">Ключевые цифры</h2>
-        <div class="stats__grid">
-          <div class="stats__item"><div class="stats__value" data-target="200" data-suffix="+">0</div><div class="stats__label">Запущенных проектов</div></div>
-          <div class="stats__item"><div class="stats__value" data-target="500" data-suffix=" RPS">0</div><div class="stats__label">Пиковая нагрузка</div></div>
-          <div class="stats__item"><div class="stats__value" data-target="100" data-suffix="/100">0</div><div class="stats__label">Lighthouse</div></div>
-          <div class="stats__item"><div class="stats__value" data-target="0.8" data-prefix="&lt;" data-suffix=" s" data-decimals="1">0</div><div class="stats__label">Time to Interactive</div></div>
-        </div>
-      </section>
-
-      <section id="portfolio" class="portfolio" data-section="portfolio">
-        <div class="portfolio__header">
-          <span class="portfolio__eyebrow">[ 04 ] · Work</span>
-          <h2 class="portfolio__title">Избранные<br />проекты.</h2>
-        </div>
-        <div class="portfolio__grid">
-          <article class="portfolio__item" data-portfolio-item>
-            <div class="portfolio__item-visual">
-              <img class="portfolio__item-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w, https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&amp;q=80&amp;auto=format&amp;fit=crop 1400w" sizes="(min-width: 900px) 45vw, 95vw" alt="CRM-дашборд с аналитикой на ноутбуке" loading="lazy" decoding="async" width="1400" height="875" />
-              <div class="portfolio__item-overlay"><span class="portfolio__item-code">&lt;CRM /&gt;</span></div>
-            </div>
-            <h3 class="portfolio__item-name">Enterprise CRM Platform</h3>
-            <p class="portfolio__item-tech">React · Node.js · PostgreSQL · WebSockets</p>
-          </article>
-          <article class="portfolio__item" data-portfolio-item>
-            <div class="portfolio__item-visual">
-              <img class="portfolio__item-img" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=900&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w, https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1400&amp;q=80&amp;auto=format&amp;fit=crop 1400w" sizes="(min-width: 900px) 45vw, 95vw" alt="Смартфон с мессенджером Telegram" loading="lazy" decoding="async" width="1400" height="875" />
-              <div class="portfolio__item-overlay"><span class="portfolio__item-code">bot.init()</span></div>
-            </div>
-            <h3 class="portfolio__item-name">High-load Telegram Bot</h3>
-            <p class="portfolio__item-tech">Python · Redis · PostgreSQL · Docker</p>
-          </article>
-          <article class="portfolio__item" data-portfolio-item>
-            <div class="portfolio__item-visual">
-              <img class="portfolio__item-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w, https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&amp;q=80&amp;auto=format&amp;fit=crop 1400w" sizes="(min-width: 900px) 45vw, 95vw" alt="Real-time дашборд с графиками" loading="lazy" decoding="async" width="1400" height="875" />
-              <div class="portfolio__item-overlay"><span class="portfolio__item-code">render()</span></div>
-            </div>
-            <h3 class="portfolio__item-name">Real-time Dashboard SPA</h3>
-            <p class="portfolio__item-tech">TypeScript · React · D3.js · SSE</p>
-          </article>
-          <article class="portfolio__item" data-portfolio-item>
-            <div class="portfolio__item-visual">
-              <img class="portfolio__item-img" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w, https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1400&amp;q=80&amp;auto=format&amp;fit=crop 1400w" sizes="(min-width: 900px) 45vw, 95vw" alt="Код на экране — automation pipeline" loading="lazy" decoding="async" width="1400" height="875" />
-              <div class="portfolio__item-overlay"><span class="portfolio__item-code">async fn()</span></div>
-            </div>
-            <h3 class="portfolio__item-name">Automation Pipeline</h3>
-            <p class="portfolio__item-tech">Node.js · Bull MQ · Stripe API · AWS</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="stack" class="stack" data-section="stack">
-        <span class="stack__eyebrow">[ 05 ] · Stack</span>
-        <div class="marquee" data-marquee>
-          <div class="marquee__track" data-marquee-track>
-            <span class="marquee__item">TypeScript</span><span class="marquee__item marquee__item--dot">·</span>
-            <span class="marquee__item">React</span><span class="marquee__item marquee__item--dot">·</span>
-            <span class="marquee__item">Node.js</span><span class="marquee__item marquee__item--dot">·</span>
-            <span class="marquee__item">Python</span><span class="marquee__item marquee__item--dot">·</span>
-            <span class="marquee__item">PostgreSQL</span><span class="marquee__item marquee__item--dot">·</span>
-            <span class="marquee__item">Redis</span><span class="marquee__item marquee__item--dot">·</span>
-            <span class="marquee__item">WebSockets</span><span class="marquee__item marquee__item--dot">·</span>
-            <span class="marquee__item">Docker</span><span class="marquee__item marquee__item--dot">·</span>
-            <span class="marquee__item">Three.js</span><span class="marquee__item marquee__item--dot">·</span>
-            <span class="marquee__item">GSAP</span><span class="marquee__item marquee__item--dot">·</span>
-          </div>
-        </div>
-        <p class="stack__note" data-reveal>Мы не привязываемся к одному инструменту, а подбираем идеальный стек под архитектуру вашего проекта, гарантируя отказоустойчивость и лёгкость масштабирования.</p>
-      </section>
-
-      <section id="contact" class="footer" data-section="contact">
-        <div class="footer__unfold" aria-hidden="true"></div>
-        <div class="footer__inner">
-          <span class="footer__eyebrow">[ 06 ] · Contact</span>
-          <h2 class="footer__title">Готовы<br />обсудить проект?</h2>
-          <p class="footer__copy">Мы берём в работу только те проекты, где можем принести реальную инженерную ценность. Готовы обсудить вашу задачу?</p>
-          <a class="magnetic" data-magnetic data-cursor-target href="https://t.me/ilyahpy" target="_blank" rel="noopener noreferrer">
-            <span class="magnetic__inner">
-              <span class="magnetic__label">Написать в Telegram</span>
-              <span class="magnetic__arrow" aria-hidden="true">→</span>
-            </span>
-          </a>
-          <footer class="footer__bottom"><small>© 2024 Engineering Team. All rights reserved.</small></footer>
-        </div>
-      </section>
-    </main>
-
-    <button class="to-top" aria-label="Наверх">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
-    </button>
-  </body>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#F4F1EA"/>
+<meta name="color-scheme" content="light dark"/>
+<title>Engineering Team — Инженерия цифровых продуктов</title>
+<meta name="description" content="Независимая инженерная студия. Кастомные CRM, Telegram-боты, быстрые SPA, автоматизация."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://example.com/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Engineering Team"/>
+<meta property="og:description" content="Кастомные CRM, Telegram-боты, SPA, автоматизация."/>
+<meta property="og:image" content="./team_illustration.png"/>
+<meta property="og:locale" content="ru_RU"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232C303A'/%3E%3Ctext x='50%25' y='55%25' text-anchor='middle' dominant-baseline='middle' font-family='Inter,Arial,sans-serif' font-weight='800' font-size='16' fill='%23F4F1EA'%3EE%3C/text%3E%3C/svg%3E"/>
+<link rel="apple-touch-icon" href="./team_illustration.png"/>
+<script>(function(){try{var s=localStorage.getItem('et-theme');var t=s==='light'||s==='dark'?s:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#14161C':'#F4F1EA';}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap"/>
+<link rel="preload" as="image" href="./team_illustration.png" fetchpriority="high"/>
+<script type="module" src="/src/main.ts" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Engineering Team","url":"https://example.com/","logo":"https://example.com/team_illustration.png","contactPoint":{"@type":"ContactPoint","contactType":"sales","url":"https://t.me/ilyahpy"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Engineering services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Telegram bots and automation"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Custom CRM and ERP"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Frontend and SPA"}}]}}</script>
+</head>
+<body class="page" data-theme="light">
+<div class="scroll-progress" aria-hidden="true"></div>
+<div class="preloader" aria-hidden="true"><div class="preloader__terminal"><span class="preloader__line preloader__line--prompt" data-preloader-line>&gt; initializing core modules...</span><span class="preloader__line" data-preloader-line>&gt; loading engineering.config.ts</span><span class="preloader__line" data-preloader-line>&gt; establishing websocket connections...</span><span class="preloader__line" data-preloader-line>&gt; compiling design tokens...</span><span class="preloader__line" data-preloader-line>&gt; mounting reactive components...</span><span class="preloader__line" data-preloader-line>&gt; rendering DOM tree...</span><span class="preloader__line preloader__line--success" data-preloader-line>&gt; [OK] All systems operational<span class="preloader__cursor"></span></span></div></div>
+<div class="cursor" data-cursor aria-hidden="true"><div class="cursor__dot"></div><div class="cursor__ring"></div></div>
+<header class="site-header">
+<a href="#hero" class="site-header__brand" data-cursor-target><span class="site-header__mark">E/T</span><span class="site-header__name">Engineering Team</span></a>
+<div class="site-header__actions">
+<nav class="site-header__nav" aria-label="Основная навигация">
+<a href="#solutions" data-cursor-target>Решения</a>
+<a href="#portfolio" data-cursor-target>Проекты</a>
+<a href="#engage" data-cursor-target>Тарифы</a>
+<a href="#faq" data-cursor-target>FAQ</a>
+<a href="#contact" data-cursor-target>Связаться</a>
+</nav>
+<button class="theme-toggle" data-theme-toggle aria-label="Переключить тему"><svg class="theme-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg><svg class="theme-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+</div>
+</header>
+<main class="page__main">
+<section id="hero" class="hero" data-section="hero">
+<div class="hero__inner">
+<div class="hero__glass">
+<h1 class="hero__title" data-split><span class="hero__title-line">Инженерия</span><span class="hero__title-line">цифровых</span><span class="hero__title-line hero__title-line--accent">продуктов.</span></h1>
+<p class="hero__lead" data-reveal>Проектируем отказоустойчивую архитектуру, создаём кастомные CRM, разрабатываем надёжных Telegram-ботов и быстрые SPA. Решаем задачи бизнеса с помощью чистого кода.</p>
+<div class="hero__meta" data-reveal><span class="hero__meta-label">[ 01 ]</span><span class="hero__meta-text">Independent engineering studio · est. 2024</span></div>
+</div>
+<div class="hero__media" data-parallax><img src="./team_illustration.png" alt="Инженерная студия" class="hero__illustration" width="1200" height="1200" fetchpriority="high" decoding="async"/><div class="hero__media-glow" aria-hidden="true"></div></div>
+</div>
+<a href="#solutions" class="hero__scroll" data-cursor-target aria-label="Прокрутить"><span class="hero__scroll-text">SCROLL</span><span class="hero__scroll-line"></span></a>
+</section>
+<section id="solutions" class="solutions" data-section="solutions">
+<div class="solutions__header"><span class="solutions__eyebrow">[ 02 ] · Solutions</span><h2 class="solutions__title">Что мы<br/>создаём.</h2></div>
+<div class="solutions__cards" data-stacking-cards>
+<article class="solutions__card" data-stacking-card><div class="solutions__card-index">01</div><h3 class="solutions__card-title">Telegram-боты &amp; Автоматизация</h3><p class="solutions__card-text">Сложная архитектура (State Machines), панели управления, интеграция с платёжными шлюзами. Асинхронные вызовы и кэш выдерживают 500+ RPS.</p><div class="solutions__card-badge">High-load ready</div></article>
+<article class="solutions__card" data-stacking-card><div class="solutions__card-index">02</div><h3 class="solutions__card-title">Кастомные CRM и ERP-системы</h3><p class="solutions__card-text">Масштабируемые системы для внутреннего управления бизнесом. API, RBAC, дашборды, реальное время через WebSockets.</p><div class="solutions__card-badge">Enterprise-grade</div></article>
+<article class="solutions__card" data-stacking-card><div class="solutions__card-index">03</div><h3 class="solutions__card-title">Frontend &amp; SPA</h3><p class="solutions__card-text">Реактивные веб-приложения с загрузкой &lt; 1 s и зелёными метриками Lighthouse. Сложные анимации и 3D без просадок FPS.</p><div class="solutions__card-badge">Lighthouse 100</div></article>
+</div>
+</section>
+<section id="process" class="process" data-section="process">
+<div class="process__header"><span class="process__eyebrow">[ 03 ] · Process</span><h2 class="process__title">Как мы<br/>работаем.</h2></div>
+<div class="process__timeline">
+<div class="process__line" aria-hidden="true"><div class="process__line-fill" data-timeline-fill></div></div>
+<div class="process__steps">
+<div class="process__step" data-timeline-step><div class="process__step-indicator" aria-hidden="true"></div><div class="process__step-content"><h3 class="process__step-title">01 | Синхронизация</h3><p class="process__step-text">Созвон в Telegram, аудит бизнес-логики, технический бриф.</p></div></div>
+<div class="process__step" data-timeline-step><div class="process__step-indicator" aria-hidden="true"></div><div class="process__step-content"><h3 class="process__step-title">02 | Архитектура</h3><p class="process__step-text">Схема БД, выбор стека, контракты API.</p></div></div>
+<div class="process__step" data-timeline-step><div class="process__step-indicator" aria-hidden="true"></div><div class="process__step-content"><h3 class="process__step-title">03 | Инжиниринг</h3><p class="process__step-text">Спринты, чистый модульный код, демо по этапам.</p></div></div>
+<div class="process__step" data-timeline-step><div class="process__step-indicator" aria-hidden="true"></div><div class="process__step-content"><h3 class="process__step-title">04 | Релиз &amp; Саппорт</h3><p class="process__step-text">Production-деплой, нагрузочный тест, передача с документацией.</p></div></div>
+</div>
+</div>
+</section>
+<section class="stats" aria-labelledby="stats-title">
+<h2 id="stats-title" class="visually-hidden">Ключевые цифры</h2>
+<div class="stats__grid">
+<div class="stats__item"><div class="stats__value" data-target="4">0</div><div class="stats__label">Запущенных проектов</div></div>
+<div class="stats__item"><div class="stats__value" data-target="500" data-suffix=" RPS">0</div><div class="stats__label">Пиковая нагрузка</div></div>
+<div class="stats__item"><div class="stats__value" data-target="100" data-suffix="/100">0</div><div class="stats__label">Lighthouse</div></div>
+<div class="stats__item"><div class="stats__value" data-target="0.8" data-prefix="&lt;" data-suffix=" s" data-decimals="1">0</div><div class="stats__label">Time to Interactive</div></div>
+</div>
+</section>
+<section class="industries" aria-label="Industries">
+<div class="industries__inner"><span class="industries__label">[ where we ship ]</span><ul class="industries__list"><li class="industries__item">E-commerce</li><li class="industries__item">FinTech</li><li class="industries__item">B2B SaaS</li><li class="industries__item">EdTech</li><li class="industries__item">Logistics</li><li class="industries__item industries__item--muted">+ your industry</li></ul></div>
+</section>
+<section id="portfolio" class="portfolio" data-section="portfolio">
+<div class="portfolio__header"><span class="portfolio__eyebrow">[ 04 ] · Work</span><h2 class="portfolio__title">Избранные<br/>проекты.</h2></div>
+<div class="portfolio__grid">
+<article class="portfolio__item" data-portfolio-item>
+<div class="portfolio__item-visual" aria-label="CRM dashboard"><div class="mock mock--crm"><div class="mock__chrome"><span class="mock__dot mock__dot--red"></span><span class="mock__dot mock__dot--yellow"></span><span class="mock__dot mock__dot--green"></span><span class="mock__url">crm.engineering.team</span></div><div class="mock__body"><aside class="mock__sidebar"><span class="mock__nav mock__nav--active"></span><span class="mock__nav"></span><span class="mock__nav"></span><span class="mock__nav"></span><span class="mock__nav"></span></aside><div class="mock__content"><div class="mock__kpis"><div class="mock__kpi"><span class="mock__kpi-value mock__kpi-value--accent">$142K</span><span class="mock__kpi-label">Revenue</span></div><div class="mock__kpi"><span class="mock__kpi-value">1247</span><span class="mock__kpi-label">Leads</span></div><div class="mock__kpi"><span class="mock__kpi-value">92%</span><span class="mock__kpi-label">Conv.</span></div></div><div class="mock__chart"><svg viewBox="0 0 200 60" preserveAspectRatio="none"><polyline points="0,50 25,42 50,45 75,28 100,32 125,18 150,22 175,8 200,12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div></div></div></div>
+<h3 class="portfolio__item-name">Enterprise CRM Platform</h3><p class="portfolio__item-tech">React · Node.js · PostgreSQL · WebSockets</p>
+</article>
+<article class="portfolio__item" data-portfolio-item>
+<div class="portfolio__item-visual" aria-label="Telegram bot"><div class="mock mock--chat"><div class="mock__chrome"><span class="mock__dot mock__dot--red"></span><span class="mock__dot mock__dot--yellow"></span><span class="mock__dot mock__dot--green"></span><span class="mock__url">@et_orders_bot</span></div><div class="mock__body"><div class="mock__bubble mock__bubble--in">/start</div><div class="mock__bubble mock__bubble--out">Здравствуйте! Что вы хотите сделать?</div><div class="mock__btns"><div class="mock__btn">📦 Новый заказ</div><div class="mock__btn">📊 Мои заказы</div><div class="mock__btn">💬 Поддержка</div></div></div></div></div>
+<h3 class="portfolio__item-name">High-load Telegram Bot</h3><p class="portfolio__item-tech">Python · aiogram · Redis · PostgreSQL · Docker</p>
+</article>
+<article class="portfolio__item" data-portfolio-item>
+<div class="portfolio__item-visual" aria-label="Real-time dashboard"><div class="mock mock--spa"><div class="mock__chrome"><span class="mock__dot mock__dot--red"></span><span class="mock__dot mock__dot--yellow"></span><span class="mock__dot mock__dot--green"></span><span class="mock__url">analytics.app</span></div><div class="mock__body"><div class="mock__card mock__card--big"><div class="mock__card-head"><span class="mock__card-label">Traffic</span><span class="mock__live">live</span></div><span class="mock__card-value">24,891</span><div class="mock__bars"><span class="mock__bar" style="block-size:35%"></span><span class="mock__bar" style="block-size:55%"></span><span class="mock__bar" style="block-size:42%"></span><span class="mock__bar" style="block-size:78%"></span><span class="mock__bar" style="block-size:60%"></span><span class="mock__bar" style="block-size:90%"></span><span class="mock__bar" style="block-size:72%"></span></div></div><div class="mock__card"><span class="mock__card-label">Latency</span><span class="mock__card-value">128 ms</span><div class="mock__spark"><svg viewBox="0 0 80 24" preserveAspectRatio="none"><polyline points="0,18 10,12 20,15 30,8 40,10 50,5 60,9 70,4 80,6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div><div class="mock__card"><span class="mock__card-label">Errors</span><div class="mock__donut" aria-hidden="true"></div></div></div></div></div>
+<h3 class="portfolio__item-name">Real-time Dashboard SPA</h3><p class="portfolio__item-tech">TypeScript · React · D3.js · SSE</p>
+</article>
+<article class="portfolio__item" data-portfolio-item>
+<div class="portfolio__item-visual" aria-label="Automation pipeline"><div class="mock mock--code"><div class="mock__chrome"><span class="mock__dot mock__dot--red"></span><span class="mock__dot mock__dot--yellow"></span><span class="mock__dot mock__dot--green"></span><span class="mock__url">deploy.ts</span></div><div class="mock__editor"><div class="mock__gutter"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span></div><div class="mock__lines"><div class="mock__line"><span class="tk-com">// CI/CD pipeline</span></div><div class="mock__line"><span class="tk-kw">import</span> { <span class="tk-fn">Queue</span> } <span class="tk-kw">from</span> <span class="tk-str">'bullmq'</span></div><div class="mock__line">&nbsp;</div><div class="mock__line"><span class="tk-kw">const</span> <span class="tk-var">jobs</span> = <span class="tk-kw">new</span> <span class="tk-fn">Queue</span>(<span class="tk-str">'deploy'</span>)</div><div class="mock__line">&nbsp;</div><div class="mock__line"><span class="tk-kw">await</span> <span class="tk-var">jobs</span>.<span class="tk-fn">add</span>(<span class="tk-str">'release'</span>, {</div><div class="mock__line">&nbsp;&nbsp;<span class="tk-var">version</span>: <span class="tk-str">'2.4.0'</span></div></div></div><div class="mock__terminal"><div class="mock__terminal-line">$ pnpm deploy</div><div class="mock__terminal-line mock__terminal-ok">✓ deployed in 8.4s</div></div></div></div>
+<h3 class="portfolio__item-name">Automation Pipeline</h3><p class="portfolio__item-tech">Node.js · BullMQ · Stripe API · AWS</p>
+</article>
+</div>
+</section>
+<section id="engage" class="engage" data-section="engage">
+<div class="engage__header"><span class="engage__eyebrow">[ 05 ] · Engagement</span><h2 class="engage__title">Форматы<br/>сотрудничества.</h2></div>
+<div class="engage__grid">
+<article class="engage__card"><span class="engage__card-label">Sprint</span><h3 class="engage__card-title">Short Sprint</h3><p class="engage__card-price">от <b>80 000 ₽</b> · 1–2 недели</p><p class="engage__card-desc">Одна узкая задача с чёткими рамками: MVP, прототип или критический фикс.</p><ul class="engage__list"><li>Фиксированная стоимость</li><li>1 инженер</li><li>Daily-отчёты в Telegram</li></ul></article>
+<article class="engage__card engage__card--feature"><span class="engage__card-label">Project · популярное</span><h3 class="engage__card-title">Project под ключ</h3><p class="engage__card-price">от <b>350 000 ₽</b> · 1–3 месяца</p><p class="engage__card-desc">CRM, бот, SPA или интеграция целиком — от ТЗ до релиза.</p><ul class="engage__list"><li>Архитектура + код + деплой</li><li>Команда 2–3 инженера</li><li>Документация и передача</li><li>30 дней гарантии</li></ul></article>
+<article class="engage__card"><span class="engage__card-label">Retainer</span><h3 class="engage__card-title">Подписка</h3><p class="engage__card-price">от <b>180 000 ₽</b> · месяц</p><p class="engage__card-desc">Постоянное развитие: фичи, оптимизация, SLA.</p><ul class="engage__list"><li>Резерв 40+ часов / мес</li><li>SLA 4 часа на критику</li><li>Ежемесячный roadmap</li></ul></article>
+</div>
+</section>
+<section id="faq" class="faq">
+<div class="faq__inner">
+<span class="faq__eyebrow">[ 06 ] · FAQ</span><h2 class="faq__title">Частые<br/>вопросы.</h2>
+<div class="faq__list">
+<details class="faq__item"><summary>Сколько занимает разработка?</summary><div class="faq__item-body">Sprint — 1–2 недели, Project — от 4 до 12 недель. После брифа высылаем подробный план с этапами.</div></details>
+<details class="faq__item"><summary>Как устроена оплата?</summary><div class="faq__item-body">2–3 этапа по milestone’ам. Аванс 30–50% перед стартом. Работаем по договору.</div></details>
+<details class="faq__item"><summary>Подписываете NDA?</summary><div class="faq__item-body">Да, по умолчанию. Шаблон вышлем или подпишем ваш.</div></details>
+<details class="faq__item"><summary>Поддержка после релиза?</summary><div class="faq__item-body">30 дней гарантии включены в Project. Дальше — почасово или Retainer с SLA.</div></details>
+<details class="faq__item"><summary>Кому принадлежит код?</summary><div class="faq__item-body">Вам. Репозиторий в вашем GitHub/GitLab с первого дня.</div></details>
+</div>
+</div>
+</section>
+<section id="stack" class="stack" data-section="stack">
+<span class="stack__eyebrow">[ 07 ] · Stack</span>
+<div class="marquee" data-marquee><div class="marquee__track" data-marquee-track><span class="marquee__item">TypeScript</span><span class="marquee__item marquee__item--dot">·</span><span class="marquee__item">React</span><span class="marquee__item marquee__item--dot">·</span><span class="marquee__item">Node.js</span><span class="marquee__item marquee__item--dot">·</span><span class="marquee__item">Python</span><span class="marquee__item marquee__item--dot">·</span><span class="marquee__item">PostgreSQL</span><span class="marquee__item marquee__item--dot">·</span><span class="marquee__item">Redis</span><span class="marquee__item marquee__item--dot">·</span><span class="marquee__item">WebSockets</span><span class="marquee__item marquee__item--dot">·</span><span class="marquee__item">Docker</span><span class="marquee__item marquee__item--dot">·</span><span class="marquee__item">Three.js</span><span class="marquee__item marquee__item--dot">·</span><span class="marquee__item">GSAP</span><span class="marquee__item marquee__item--dot">·</span></div></div>
+<p class="stack__note" data-reveal>Не привязываемся к одному инструменту — подбираем идеальный стек под архитектуру проекта.</p>
+</section>
+<section id="contact" class="footer" data-section="contact">
+<div class="footer__unfold" aria-hidden="true"></div>
+<div class="footer__inner">
+<span class="footer__eyebrow">[ 08 ] · Contact</span>
+<h2 class="footer__title">Готовы<br/>обсудить проект?</h2>
+<p class="footer__copy">Берём в работу проекты, где можем принести реальную инженерную ценность.</p>
+<a class="magnetic" data-magnetic data-cursor-target href="https://t.me/ilyahpy" target="_blank" rel="noopener noreferrer"><span class="magnetic__inner"><span class="magnetic__label">Написать в Telegram</span><span class="magnetic__arrow" aria-hidden="true">→</span></span></a>
+<footer class="footer__bottom"><small>© 2024 Engineering Team. All rights reserved.</small></footer>
+</div>
+</section>
+</main>
+<button class="to-top" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+<a class="sticky-cta" href="https://t.me/ilyahpy" target="_blank" rel="noopener noreferrer" aria-label="Обсудить проект"><span>Обсудить проект</span><span aria-hidden="true">→</span></a>
+</body>
 </html>
