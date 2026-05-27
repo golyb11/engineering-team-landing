@@ -1,0 +1,104 @@
+/**
+ * portfolio-mocks.css — HTML/CSS app mockups (no images, no JS).
+ * Variants: --crm, --chat, --spa, --code.
+ */
+.mock {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  font-family: 'JetBrains Mono','Fira Code','SF Mono','Consolas',monospace;
+  font-size: clamp(0.55rem, 0.4rem + 0.55vw, 0.78rem);
+  user-select: none; overflow: hidden;
+}
+.mock__chrome {
+  display: flex; align-items: center; gap: 0.4em;
+  padding: 0.5em 0.8em;
+  background: rgba(255,255,255,0.05);
+  border-block-end: 1px solid rgba(255,255,255,0.07);
+  font-size: 0.8em; flex-shrink: 0;
+}
+.mock__dot { inline-size: 0.6em; block-size: 0.6em; border-radius: 50%; background: rgba(255,255,255,0.2); flex-shrink: 0; }
+.mock__dot--red { background: #ff5f56; }
+.mock__dot--yellow { background: #ffbd2e; }
+.mock__dot--green { background: #27c93f; }
+.mock__url {
+  margin-inline-start: auto;
+  padding: 0.15em 0.7em; border-radius: 4px;
+  background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5);
+  font-size: 0.9em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-inline-size: 55%;
+}
+.mock__body { flex: 1; display: flex; overflow: hidden; min-block-size: 0; }
+
+/* --- CRM Dashboard --- */
+.mock--crm { background: #1a1d24; color: #f4f1ea; }
+.mock--crm .mock__sidebar {
+  inline-size: 18%; background: rgba(255,255,255,0.03);
+  padding: 0.8em 0.5em; display: flex; flex-direction: column; gap: 0.45em;
+  border-inline-end: 1px solid rgba(255,255,255,0.05);
+}
+.mock--crm .mock__nav { block-size: 0.65em; border-radius: 3px; background: rgba(255,255,255,0.08); }
+.mock--crm .mock__nav--active { background: #b4533a; }
+.mock--crm .mock__content { flex: 1; padding: 0.8em; display: flex; flex-direction: column; gap: 0.6em; min-inline-size: 0; }
+.mock--crm .mock__kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5em; }
+.mock--crm .mock__kpi { background: rgba(255,255,255,0.04); border-radius: 4px; padding: 0.55em 0.6em; display: flex; flex-direction: column; gap: 0.2em; min-inline-size: 0; }
+.mock--crm .mock__kpi-value { font-weight: 700; font-size: 1.25em; color: #f4f1ea; white-space: nowrap; }
+.mock--crm .mock__kpi-value--accent { color: #b4533a; }
+.mock--crm .mock__kpi-label { font-size: 0.65em; color: rgba(244,241,234,0.5); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mock--crm .mock__chart { flex: 1; background: rgba(255,255,255,0.03); border-radius: 4px; padding: 0.5em; }
+.mock--crm .mock__chart svg { inline-size: 100%; block-size: 100%; display: block; color: #b4533a; }
+
+/* --- Telegram Chat --- */
+.mock--chat { background: #0e1621; color: #ecf0f1; }
+.mock--chat .mock__chrome { background: #17212b; border-block-end-color: rgba(255,255,255,0.04); }
+.mock--chat .mock__body { flex-direction: column; gap: 0.4em; padding: 0.8em; }
+.mock--chat .mock__bubble {
+  max-inline-size: 75%; padding: 0.45em 0.75em; border-radius: 0.9em;
+  font-size: 0.95em; line-height: 1.25;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.mock--chat .mock__bubble--in { align-self: flex-start; background: #182533; border-bottom-left-radius: 0.2em; }
+.mock--chat .mock__bubble--out { align-self: flex-end; background: #2b5278; border-bottom-right-radius: 0.2em; color: #fff; }
+.mock--chat .mock__btns { align-self: flex-start; display: flex; flex-direction: column; gap: 0.25em; max-inline-size: 75%; inline-size: 75%; }
+.mock--chat .mock__btn {
+  background: rgba(43,82,120,0.35); padding: 0.4em 0.7em; border-radius: 0.45em;
+  text-align: center; color: #a8c7e6; border: 1px solid rgba(43,82,120,0.55);
+  font-size: 0.9em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* --- Real-time Dashboard SPA --- */
+.mock--spa { background: #f8f6f1; color: #2c303a; }
+.mock--spa .mock__chrome { background: #ede9df; border-block-end-color: rgba(0,0,0,0.06); color: #2c303a; }
+.mock--spa .mock__chrome .mock__url { background: rgba(0,0,0,0.05); color: rgba(44,48,58,0.6); }
+.mock--spa .mock__body { padding: 0.7em; display: grid; grid-template-columns: 1.3fr 1fr; grid-template-rows: 1fr 1fr; gap: 0.5em; }
+.mock--spa .mock__card { background: #fff; border-radius: 5px; padding: 0.6em 0.7em; display: flex; flex-direction: column; gap: 0.3em; border: 1px solid rgba(0,0,0,0.05); min-inline-size: 0; }
+.mock--spa .mock__card--big { grid-row: 1 / 3; }
+.mock--spa .mock__card-head { display: flex; align-items: center; gap: 0.4em; }
+.mock--spa .mock__card-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(44,48,58,0.55); font-weight: 600; }
+.mock--spa .mock__card-value { font-weight: 700; font-size: 1.3em; color: #14161c; }
+.mock--spa .mock__bars { display: flex; align-items: end; gap: 0.25em; flex: 1; margin-block-start: 0.3em; block-size: 1.5em; }
+.mock--spa .mock__bar { flex: 1; background: #b4533a; border-radius: 1px 1px 0 0; opacity: 0.85; }
+.mock--spa .mock__spark svg { inline-size: 100%; block-size: 100%; display: block; color: #b4533a; }
+.mock--spa .mock__live { display: inline-flex; align-items: center; gap: 0.35em; font-size: 0.7em; color: #27c93f; margin-inline-start: auto; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+.mock--spa .mock__live::before { content: ''; inline-size: 0.55em; block-size: 0.55em; border-radius: 50%; background: currentColor; box-shadow: 0 0 5px currentColor; animation: mockPulse 1.6s ease-in-out infinite; }
+@keyframes mockPulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+.mock--spa .mock__donut { inline-size: 2.5em; block-size: 2.5em; border-radius: 50%; background: conic-gradient(#b4533a 0 72%, #ede9df 0); position: relative; align-self: center; margin-block: 0.2em; }
+.mock--spa .mock__donut::after { content: ''; position: absolute; inset: 22%; background: #fff; border-radius: 50%; }
+
+/* --- Code Editor + Terminal --- */
+.mock--code { background: #14161c; color: #c9d1d9; }
+.mock--code .mock__chrome { background: #1a1d24; }
+.mock--code .mock__editor { flex: 1; padding: 0.7em 0.4em; display: flex; font-size: 1em; overflow: hidden; min-block-size: 0; }
+.mock--code .mock__gutter { padding-inline: 0.5em; color: rgba(255,255,255,0.22); text-align: end; font-variant-numeric: tabular-nums; font-size: 0.95em; }
+.mock--code .mock__gutter span { display: block; line-height: 1.55; }
+.mock--code .mock__lines { flex: 1; padding-inline-start: 0.4em; overflow: hidden; min-inline-size: 0; }
+.mock--code .mock__line { line-height: 1.55; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mock--code .tk-kw { color: #ff7b72; }
+.mock--code .tk-fn { color: #d2a8ff; }
+.mock--code .tk-str { color: #a5d6ff; }
+.mock--code .tk-com { color: #8b949e; font-style: italic; }
+.mock--code .tk-num { color: #79c0ff; }
+.mock--code .tk-var { color: #ffa657; }
+.mock--code .mock__terminal { background: rgba(0,0,0,0.4); padding: 0.45em 0.7em; font-size: 0.85em; border-block-start: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; }
+.mock--code .mock__terminal-line { color: #8b949e; }
+.mock--code .mock__terminal-ok { color: #27c93f; }
