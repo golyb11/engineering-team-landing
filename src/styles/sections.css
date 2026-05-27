@@ -1,0 +1,158 @@
+/**
+ * sections.css — FAQ accordion, engagement tiers (pricing), industries strip,
+ * sticky mobile CTA. Pure CSS, no JS dependencies (uses native <details>).
+ */
+
+/* ===== Industries strip ===== */
+.industries {
+  padding-block: clamp(2rem, 4vw, 3rem);
+  padding-inline: var(--gutter);
+  background: var(--theme-bg);
+  border-block-start: 1px solid var(--theme-line);
+  border-block-end: 1px solid var(--theme-line);
+  overflow: hidden;
+}
+.industries__inner {
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+  display: flex; flex-wrap: wrap; gap: 0.6rem 2.2rem; align-items: center;
+}
+.industries__label {
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  opacity: 0.55; font-weight: 500;
+  font-family: 'JetBrains Mono','Fira Code','SF Mono','Consolas',monospace;
+}
+.industries__list {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.8rem;
+  list-style: none; margin: 0; padding: 0;
+  font-family: var(--font-display); font-weight: 500;
+}
+.industries__item {
+  font-size: clamp(1rem, 0.85rem + 0.5vw, 1.35rem);
+  color: var(--theme-headline); letter-spacing: -0.01em;
+}
+.industries__item--muted { opacity: 0.4; }
+
+/* ===== Engagement / Pricing tiers ===== */
+.engage {
+  padding-block: var(--section-pad-block);
+  padding-inline: var(--gutter);
+  background: var(--theme-bg); color: var(--theme-text);
+}
+.engage__header { max-inline-size: var(--max-width); margin-inline: auto; margin-block-end: clamp(2.5rem, 5vw, 4rem); }
+.engage__eyebrow {
+  display: block; font-size: var(--fs-xs); letter-spacing: 0.22em;
+  text-transform: uppercase; font-weight: 500; opacity: 0.7;
+  margin-block-end: 1.5rem;
+}
+.engage__title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--fs-2xl); letter-spacing: -0.045em; line-height: 0.88;
+  margin: 0; color: var(--theme-headline);
+}
+.engage__grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  max-inline-size: var(--max-width); margin-inline: auto;
+}
+.engage__card {
+  position: relative;
+  padding: clamp(1.5rem, 2.5vw, 2.2rem);
+  border: 1px solid var(--theme-line);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.02);
+  display: flex; flex-direction: column; gap: 1rem;
+  transition: transform 0.4s var(--ease-out-expo), border-color 0.3s ease, box-shadow 0.4s ease;
+}
+.engage__card--feature {
+  border-color: var(--c-accent);
+  background: linear-gradient(160deg, rgba(180,83,58,0.07), transparent 60%);
+}
+.engage__card-label {
+  font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--c-accent); font-weight: 700;
+  font-family: 'JetBrains Mono','Fira Code','SF Mono','Consolas',monospace;
+}
+.engage__card-title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.6rem, 1.2rem + 1vw, 2rem);
+  margin: 0; color: var(--theme-headline); line-height: 1;
+}
+.engage__card-price {
+  font-size: 1.05rem; font-weight: 500; color: var(--theme-headline);
+  padding-block-end: 0.5rem; border-block-end: 1px solid var(--theme-line);
+}
+.engage__card-price b { font-weight: 700; color: var(--c-accent); }
+.engage__card-desc { font-size: 0.95rem; line-height: 1.5; opacity: 0.8; margin: 0; }
+.engage__list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.55rem; font-size: 0.92rem; }
+.engage__list li { display: flex; gap: 0.6rem; align-items: flex-start; line-height: 1.4; }
+.engage__list li::before { content: '→'; color: var(--c-accent); flex-shrink: 0; font-weight: 700; }
+@media (hover: hover) {
+  .engage__card:hover { transform: translateY(-4px); border-color: var(--c-accent); box-shadow: 0 14px 40px rgba(0,0,0,0.08); }
+}
+
+/* ===== FAQ accordion ===== */
+.faq {
+  padding-block: var(--section-pad-block);
+  padding-inline: var(--gutter);
+  background: var(--theme-bg); color: var(--theme-text);
+}
+.faq__inner { max-inline-size: var(--max-width); margin-inline: auto; }
+.faq__eyebrow {
+  display: block; font-size: var(--fs-xs); letter-spacing: 0.22em;
+  text-transform: uppercase; font-weight: 500; opacity: 0.7;
+  margin-block-end: 1.5rem;
+}
+.faq__title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--fs-2xl); letter-spacing: -0.045em; line-height: 0.88;
+  margin: 0 0 2.5rem; color: var(--theme-headline);
+}
+.faq__list { display: flex; flex-direction: column; }
+.faq__item {
+  border-block-start: 1px solid var(--theme-line);
+  padding-block: 1.3rem;
+}
+.faq__item:last-of-type { border-block-end: 1px solid var(--theme-line); }
+.faq__item[open] { padding-block-end: 1.6rem; }
+.faq__item summary {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; cursor: pointer; list-style: none;
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(1.05rem, 0.85rem + 0.6vw, 1.35rem);
+  letter-spacing: -0.01em; color: var(--theme-headline);
+}
+.faq__item summary::-webkit-details-marker { display: none; }
+.faq__item summary::after {
+  content: '+'; font-size: 1.5em; font-weight: 400;
+  transition: transform 0.35s var(--ease-out-expo); color: var(--c-accent);
+  flex-shrink: 0;
+}
+.faq__item[open] summary::after { transform: rotate(45deg); }
+.faq__item-body {
+  margin-block-start: 1rem;
+  font-size: clamp(0.92rem, 0.85rem + 0.3vw, 1.05rem);
+  line-height: 1.6; max-inline-size: 65ch; opacity: 0.82;
+}
+
+/* ===== Sticky mobile CTA ===== */
+.sticky-cta { display: none; }
+@media (max-width: 700px) {
+  .sticky-cta {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    position: fixed;
+    inset-inline: 1rem;
+    inset-block-end: calc(0.8rem + env(safe-area-inset-bottom));
+    z-index: 60;
+    padding: 0.95rem 1.2rem;
+    background: #14161c; color: #f4f1ea;
+    border-radius: 999px;
+    font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+    transition: transform 0.25s ease, opacity 0.3s ease;
+  }
+  .sticky-cta:active { transform: scale(0.97); }
+  body { padding-block-end: 5rem; }
+  [data-theme="dark"] .sticky-cta { background: #b4533a; color: #fff; }
+}
