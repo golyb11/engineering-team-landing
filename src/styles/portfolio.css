@@ -1,16 +1,9 @@
 /**
  * src/styles/portfolio.css
  * ----------------------------------------------------------------------------
- * Portfolio / projects showcase section. Uses CSS Grid for a 2x2 layout.
- * Each card has a glassmorphism placeholder with abstract gradient background
- * and a monospace code snippet in the center.
- *
- * On hover, the "X-Ray" effect triggers: card scales up slightly, the
- * placeholder inner code snippet becomes more visible, and a subtle shift
- * of internal elements creates depth.
- *
- * Dependencies: tokens.css
- * Related JS: none (pure CSS interactions + data-reveal from reveal.ts)
+ * Portfolio / projects showcase — 2x2 grid of project tiles, each with a real
+ * thematic photo (CRM dashboard, Telegram chat, analytics, code) plus an
+ * overlaid code-snippet badge that brightens on hover (X-Ray effect).
  * ----------------------------------------------------------------------------
  */
 .portfolio {
@@ -68,33 +61,44 @@
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: var(--radius);
+  background-color: #1a1d24;
 }
 
-.portfolio__item-placeholder {
+.portfolio__item-img {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  filter: grayscale(0.35) contrast(1.05) brightness(0.85);
+  transition:
+    transform 0.7s var(--ease-out-expo),
+    filter 0.7s var(--ease-out-expo);
+  will-change: transform;
+}
+
+.portfolio__item-overlay {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
   background:
-    linear-gradient(135deg, rgba(180, 83, 58, 0.15) 0%, transparent 50%),
-    linear-gradient(225deg, rgba(44, 48, 58, 0.3) 0%, transparent 50%),
-    rgba(20, 22, 28, 0.06);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+    linear-gradient(135deg, rgba(180, 83, 58, 0.18) 0%, transparent 55%),
+    linear-gradient(225deg, rgba(20, 22, 28, 0.55) 0%, rgba(20, 22, 28, 0.15) 60%);
   border: 1px solid var(--theme-line);
-  transition:
-    background 0.6s var(--ease-out-expo),
-    backdrop-filter 0.6s var(--ease-out-expo);
+  border-radius: var(--radius);
+  transition: background 0.6s var(--ease-out-expo);
+  pointer-events: none;
 }
 
-/* X-Ray code snippet in placeholder center */
 .portfolio__item-code {
   font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Consolas', monospace;
-  font-size: clamp(1rem, 0.8rem + 1vw, 1.8rem);
-  font-weight: 500;
-  color: var(--theme-headline);
-  opacity: 0.12;
+  font-size: clamp(1rem, 0.8rem + 1vw, 1.7rem);
+  font-weight: 600;
+  color: #f4f1ea;
+  opacity: 0.6;
   letter-spacing: -0.02em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
   transition:
     opacity 0.5s var(--ease-out-expo),
     transform 0.5s var(--ease-out-expo),
@@ -119,23 +123,32 @@
   margin-block-start: 0.3rem;
 }
 
-/* Hover X-Ray effect */
 @media (hover: hover) {
   .portfolio__item:hover {
-    transform: scale(1.03);
+    transform: scale(1.025);
   }
-
-  .portfolio__item:hover .portfolio__item-placeholder {
+  .portfolio__item:hover .portfolio__item-img {
+    transform: scale(1.08);
+    filter: grayscale(0) contrast(1.08) brightness(1);
+  }
+  .portfolio__item:hover .portfolio__item-overlay {
     background:
-      linear-gradient(135deg, rgba(180, 83, 58, 0.25) 0%, transparent 50%),
-      linear-gradient(225deg, rgba(44, 48, 58, 0.5) 0%, transparent 50%),
-      rgba(20, 22, 28, 0.12);
+      linear-gradient(135deg, rgba(180, 83, 58, 0.4) 0%, transparent 55%),
+      linear-gradient(225deg, rgba(20, 22, 28, 0.75) 0%, rgba(20, 22, 28, 0.25) 60%);
   }
-
   .portfolio__item:hover .portfolio__item-code {
-    opacity: 0.55;
+    opacity: 1;
     transform: scale(1);
     color: var(--c-accent);
+  }
+}
+
+@media (hover: none) {
+  .portfolio__item-img {
+    filter: grayscale(0) contrast(1.05) brightness(0.92);
+  }
+  .portfolio__item-code {
+    opacity: 0.85;
   }
 }
 

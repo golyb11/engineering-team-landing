@@ -2,29 +2,6 @@
  * src/styles/main.css
  * ----------------------------------------------------------------------------
  * Global stylesheet — single file that @imports every modular section sheet.
- * Vite bundles them into one CSS asset so we keep the request count minimal
- * while still authoring code in small, focused modules.
- *
- * Order matters:
- *   1.  tokens.css       — CSS custom properties (palette, type scale, easings)
- *   2.  reset.css        — minimal Eric Meyer-flavoured reset
- *   3.  typography.css   — font stacks + base type rules
- *   4.  utilities.css    — `data-reveal` initial state, helper classes
- *   5.  layout.css       — page shell, header, container widths
- *   6.  preloader.css    — terminal-style preloader overlay
- *   7.  cursor.css       — custom cursor dot + ring
- *   8.  hero.css         — Hero section composition + glassmorphism
- *   9.  solutions.css    — Sticky stacking cards (replaces old expertise)
- *  10.  process.css      — Scroll timeline with progress line
- *  11.  portfolio.css    — Project showcase grid with X-Ray hover
- *  12.  stack.css        — Marquee with text-stroke
- *  13.  footer.css       — Footer CTA + magnetic button
- *  14.  team.css         — Team grid with portrait photos
- *  15.  stats.css        — Animated big-number stats bar
- *  16.  ui.css           — Theme toggle, scroll progress, back-to-top
- *  17.  responsive.css   — mobile overrides (must come LAST)
- *
- * Dependencies: none (pure CSS).
  * ----------------------------------------------------------------------------
  */
 @import './tokens.css';
@@ -40,7 +17,6 @@
 @import './portfolio.css';
 @import './stack.css';
 @import './footer.css';
-@import './team.css';
 @import './stats.css';
 @import './ui.css';
 @import './responsive.css';

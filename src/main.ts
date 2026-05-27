@@ -10,10 +10,9 @@
  *   3. Initialise the scroll-progress bar so it tracks the preloader scroll too.
  *   4. Boot Lenis smooth-scroll (skipped on touch / reduced-motion devices).
  *   5. Initialise the custom cursor (desktop only).
- *   6. Run terminal preloader — it resolves once the console boot sequence
- *      completes and the reveal animation finishes.
+ *   6. Run terminal preloader.
  *   7. Wire section animations: Hero, Solutions, Process, Marquee, Magnetic,
- *      generic reveal, Stats counters, Team cards, Back-to-top button.
+ *      generic reveal, Stats counters, Back-to-top button.
  *
  * Related files: index.html
  * ----------------------------------------------------------------------------
@@ -30,7 +29,6 @@ import { initProcess } from './animations/process';
 import { initMarquee } from './animations/marquee';
 import { initMagnetic } from './animations/magnetic';
 import { initReveal } from './animations/reveal';
-import { initTeam } from './animations/team';
 import { initStats } from './animations/stats';
 import { initThemeToggle } from './animations/theme-toggle';
 import { initScrollProgress } from './animations/scroll-progress';
@@ -41,21 +39,14 @@ const isTouch =
 const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 async function bootstrap(): Promise<void> {
-  // Wire the theme toggle button (the inlined <head> script already applied
-  // the saved/system theme before first paint to avoid FOUC).
   initThemeToggle();
 
   setupGsap();
   initScrollProgress();
 
-  // Custom cursor only makes sense on devices with a precise pointer.
   if (!isTouch) initCursor();
-
-  // Smooth scroll is heavy on touch + drains battery — fall back to native.
   if (!isTouch && !prefersReducedMotion) initSmoothScroll();
 
-  // Wait for preloader to finish before kicking off scroll-driven animations,
-  // otherwise ScrollTrigger calculates positions against a 0-height viewport.
   await runPreloader({ skip: prefersReducedMotion });
 
   initHero({ disableParallax: isTouch || prefersReducedMotion });
@@ -66,7 +57,6 @@ async function bootstrap(): Promise<void> {
   initReveal();
 
   initStats();
-  initTeam();
   initBackToTop();
 }
 
