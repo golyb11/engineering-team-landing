@@ -19,7 +19,10 @@
  *  11.  portfolio.css    — Project showcase grid with X-Ray hover
  *  12.  stack.css        — Marquee with text-stroke
  *  13.  footer.css       — Footer CTA + magnetic button
- *  14.  responsive.css   — mobile overrides (must come LAST)
+ *  14.  team.css         — Team grid with portrait photos
+ *  15.  stats.css        — Animated big-number stats bar
+ *  16.  ui.css           — Theme toggle, scroll progress, back-to-top
+ *  17.  responsive.css   — mobile overrides (must come LAST)
  *
  * Dependencies: none (pure CSS).
  * ----------------------------------------------------------------------------
@@ -37,4 +40,7 @@
 @import './portfolio.css';
 @import './stack.css';
 @import './footer.css';
+@import './team.css';
+@import './stats.css';
+@import './ui.css';
 @import './responsive.css';

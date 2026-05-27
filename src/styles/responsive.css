@@ -7,8 +7,9 @@
  * absolute-positioned overlay to a contained, smaller background element so
  * that the glass panel with text is always fully visible and readable.
  *
- * All new sections (solutions, process, portfolio) are collapsed to single
- * column with appropriate spacing. Sticky card behavior is disabled on mobile.
+ * All new sections (solutions, process, portfolio, team, stats) collapse to
+ * single column with appropriate spacing. Sticky card behavior is disabled
+ * on mobile.
  *
  * Dependencies: every other stylesheet.
  * ----------------------------------------------------------------------------
@@ -148,6 +149,20 @@
     gap: 1.5rem;
   }
 
+  /* TEAM */
+  .team {
+    padding-block: clamp(4rem, 8vw, 6rem);
+  }
+
+  .team__title {
+    font-size: clamp(2.5rem, 9vw, 4rem);
+  }
+
+  /* STATS */
+  .stats {
+    padding-block: clamp(3rem, 7vw, 5rem);
+  }
+
   /* FOOTER */
   .footer__title {
     font-size: clamp(2.8rem, 9vw, 5rem);
@@ -193,7 +208,9 @@
 
   .solutions,
   .process,
-  .portfolio {
+  .portfolio,
+  .team,
+  .stats {
     padding-inline: 1rem;
   }
 
@@ -223,6 +240,23 @@
 
   .portfolio__item-name {
     font-size: 1rem;
+  }
+
+  .team__title {
+    font-size: clamp(2.2rem, 11vw, 3.5rem);
+  }
+
+  .team__info {
+    padding: 1rem 1rem 1.2rem;
+  }
+
+  .stats__value {
+    font-size: clamp(2.2rem, 12vw, 3.8rem);
+  }
+
+  .to-top {
+    inline-size: 44px;
+    block-size: 44px;
   }
 
   .footer {

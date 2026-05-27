@@ -4,32 +4,16 @@
  * Application entry point. Orchestrates initialization of every progressive-
  * enhancement module in the correct order:
  *
- *   1. Register GSAP plugins once (animations/gsap-setup).
- *   2. Run terminal preloader — it resolves once the console boot sequence
+ *   1. Apply theme synchronously (inlined head script handles first paint;
+ *      initThemeToggle wires up the toggle button).
+ *   2. Register GSAP plugins once (animations/gsap-setup).
+ *   3. Initialise the scroll-progress bar so it tracks the preloader scroll too.
+ *   4. Boot Lenis smooth-scroll (skipped on touch / reduced-motion devices).
+ *   5. Initialise the custom cursor (desktop only).
+ *   6. Run terminal preloader — it resolves once the console boot sequence
  *      completes and the reveal animation finishes.
- *   3. Boot Lenis smooth-scroll (skipped on touch / reduced-motion devices).
- *   4. Initialise the custom cursor (desktop only).
- *   5. Wire section animations: Hero (glassmorphism reveal), Solutions
- *      (sticky stacking cards), Process (scroll timeline), Portfolio,
- *      Stack marquee, Footer magnetic button, generic scroll-reveal.
- *
- * Why a single entry?
- *   - Keeps the dev experience zero-config: `npm run dev` just works.
- *   - Vite tree-shakes unused exports — splitting into many entries would
- *     hurt cache locality without measurable benefit at this size.
- *
- * Dependencies:
- *   - ./animations/gsap-setup    (GSAP + ScrollTrigger registration)
- *   - ./animations/preloader     (terminal boot sequence & reveal)
- *   - ./animations/smooth-scroll (Lenis bootstrap, syncs with ScrollTrigger)
- *   - ./animations/cursor        (custom cursor with hover state)
- *   - ./animations/hero          (parallax + headline reveal)
- *   - ./animations/solutions     (sticky stacking cards + theme flip)
- *   - ./animations/process       (scroll timeline with progress fill)
- *   - ./animations/marquee       (infinite stack ticker)
- *   - ./animations/magnetic      (footer CTA magnetic effect)
- *   - ./animations/reveal        (generic [data-reveal] fade-in-up)
- *   - ./styles/main.css          (global tokens + section styles)
+ *   7. Wire section animations: Hero, Solutions, Process, Marquee, Magnetic,
+ *      generic reveal, Stats counters, Team cards, Back-to-top button.
  *
  * Related files: index.html
  * ----------------------------------------------------------------------------
@@ -46,13 +30,23 @@ import { initProcess } from './animations/process';
 import { initMarquee } from './animations/marquee';
 import { initMagnetic } from './animations/magnetic';
 import { initReveal } from './animations/reveal';
+import { initTeam } from './animations/team';
+import { initStats } from './animations/stats';
+import { initThemeToggle } from './animations/theme-toggle';
+import { initScrollProgress } from './animations/scroll-progress';
+import { initBackToTop } from './animations/back-to-top';
 
 const isTouch =
   matchMedia('(hover: none)').matches || 'ontouchstart' in window;
 const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 async function bootstrap(): Promise<void> {
+  // Wire the theme toggle button (the inlined <head> script already applied
+  // the saved/system theme before first paint to avoid FOUC).
+  initThemeToggle();
+
   setupGsap();
+  initScrollProgress();
 
   // Custom cursor only makes sense on devices with a precise pointer.
   if (!isTouch) initCursor();
@@ -70,6 +64,10 @@ async function bootstrap(): Promise<void> {
   initMarquee({ pauseOnHover: !isTouch });
   if (!isTouch && !prefersReducedMotion) initMagnetic();
   initReveal();
+
+  initStats();
+  initTeam();
+  initBackToTop();
 }
 
 if (document.readyState === 'loading') {

@@ -1,0 +1,124 @@
+/**
+ * src/styles/team.css
+ * ----------------------------------------------------------------------------
+ * Team section — 4 engineer portraits.
+ * Mobile-first responsive grid: 1 col (phone) → 2 col (≥600px) → 4 col (≥1000px).
+ * Photos use grayscale-to-color hover on desktop and stay coloured on touch
+ * devices (where there is no hover). aspect-ratio: 1/1 prevents CLS.
+ *
+ * Dependencies: tokens.css
+ * ----------------------------------------------------------------------------
+ */
+.team {
+  position: relative;
+  padding-block: var(--section-pad-block);
+  padding-inline: var(--gutter);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
+}
+
+.team__header {
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+  margin-block-end: clamp(2.5rem, 6vw, 5rem);
+}
+
+.team__eyebrow {
+  display: block;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.7;
+  margin-block-end: 1.25rem;
+}
+
+.team__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  color: var(--theme-headline);
+  margin: 0;
+}
+
+.team__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2vw, 2rem);
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+}
+
+@media (min-width: 600px) {
+  .team__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  .team__grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.team__card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--theme-line);
+  background-color: var(--theme-bg-soft);
+  transition: transform 0.6s var(--ease-out-expo);
+  will-change: transform;
+}
+
+.team__photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--theme-bg-soft);
+}
+
+.team__photo img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(1.05);
+  transition:
+    filter 0.7s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  will-change: transform, filter;
+}
+
+.team__info {
+  padding: clamp(0.9rem, 1.4vw, 1.4rem) clamp(1rem, 1.4vw, 1.4rem) clamp(1.1rem, 1.6vw, 1.6rem);
+}
+
+.team__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.05rem, 0.8rem + 0.7vw, 1.35rem);
+  letter-spacing: -0.01em;
+  color: var(--theme-headline);
+  margin: 0;
+}
+
+.team__role {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-block-start: 0.4rem;
+}
+
+@media (hover: hover) {
+  .team__card:hover {
+    transform: translateY(-4px);
+  }
+  .team__card:hover .team__photo img {
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.04);
+  }
+}
+
+@media (hover: none) {
+  .team__photo img {
+    filter: grayscale(0%) contrast(1);
+  }
+}

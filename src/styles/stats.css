@@ -1,0 +1,59 @@
+/**
+ * src/styles/stats.css
+ * ----------------------------------------------------------------------------
+ * Bar with 4 animated big-number stats. Mobile-first: stacks vertically on
+ * phones, two-up on tablet (≥600px), four-up on desktop (≥1000px).
+ * Accent prefixes/suffixes are inline spans coloured with --c-accent.
+ * ----------------------------------------------------------------------------
+ */
+.stats {
+  position: relative;
+  padding-block: clamp(3.5rem, 7vw, 8rem);
+  padding-inline: var(--gutter);
+  background-color: var(--theme-bg-soft);
+  color: var(--theme-text);
+  border-block: 1px solid var(--theme-line);
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  max-inline-size: var(--max-width);
+  margin-inline: auto;
+}
+
+@media (min-width: 600px) {
+  .stats__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  .stats__grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.stats__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.stats__value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--theme-headline);
+  font-variant-numeric: tabular-nums;
+}
+
+.stats__value .stats__prefix,
+.stats__value .stats__suffix {
+  color: var(--c-accent);
+}
+
+.stats__label {
+  font-size: var(--fs-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
