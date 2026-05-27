@@ -79,8 +79,8 @@
         <nav class="site-header__nav" aria-label="Основная навигация">
           <a href="#solutions" data-cursor-target>Решения</a>
           <a href="#process" data-cursor-target>Процесс</a>
-          <a href="#team" data-cursor-target>Команда</a>
           <a href="#portfolio" data-cursor-target>Проекты</a>
+          <a href="#stack" data-cursor-target>Стек</a>
           <a href="#contact" data-cursor-target>Контакты</a>
         </nav>
         <button class="theme-toggle" data-theme-toggle aria-label="Переключить тему">
@@ -193,54 +193,41 @@
         </div>
       </section>
 
-      <section id="team" class="team" data-section="team">
-        <header class="team__header">
-          <span class="team__eyebrow">[ 04 ] · Team</span>
-          <h2 class="team__title">Команда.</h2>
-        </header>
-        <div class="team__grid">
-          <article class="team__card">
-            <div class="team__photo"><img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&amp;q=80&amp;auto=format&amp;fit=crop 400w, https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w" sizes="(min-width: 1000px) 22vw, (min-width: 600px) 45vw, 90vw" alt="Портрет Анны" loading="lazy" decoding="async" width="900" height="900" /></div>
-            <div class="team__info"><h3 class="team__name">Анна К.</h3><div class="team__role">Lead Architect</div></div>
-          </article>
-          <article class="team__card">
-            <div class="team__photo"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&amp;q=80&amp;auto=format&amp;fit=crop 400w, https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w" sizes="(min-width: 1000px) 22vw, (min-width: 600px) 45vw, 90vw" alt="Портрет Дмитрия" loading="lazy" decoding="async" width="900" height="900" /></div>
-            <div class="team__info"><h3 class="team__name">Дмитрий М.</h3><div class="team__role">Backend / Bots</div></div>
-          </article>
-          <article class="team__card">
-            <div class="team__photo"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&amp;q=80&amp;auto=format&amp;fit=crop 400w, https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w" sizes="(min-width: 1000px) 22vw, (min-width: 600px) 45vw, 90vw" alt="Портрет Марии" loading="lazy" decoding="async" width="900" height="900" /></div>
-            <div class="team__info"><h3 class="team__name">Мария Л.</h3><div class="team__role">Frontend / Motion</div></div>
-          </article>
-          <article class="team__card">
-            <div class="team__photo"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&amp;q=80&amp;auto=format&amp;fit=crop 400w, https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w" sizes="(min-width: 1000px) 22vw, (min-width: 600px) 45vw, 90vw" alt="Портрет Сергея" loading="lazy" decoding="async" width="900" height="900" /></div>
-            <div class="team__info"><h3 class="team__name">Сергей П.</h3><div class="team__role">DevOps / SRE</div></div>
-          </article>
-        </div>
-      </section>
-
       <section id="portfolio" class="portfolio" data-section="portfolio">
         <div class="portfolio__header">
-          <span class="portfolio__eyebrow">[ 05 ] · Work</span>
+          <span class="portfolio__eyebrow">[ 04 ] · Work</span>
           <h2 class="portfolio__title">Избранные<br />проекты.</h2>
         </div>
         <div class="portfolio__grid">
           <article class="portfolio__item" data-portfolio-item>
-            <div class="portfolio__item-visual"><div class="portfolio__item-placeholder"><span class="portfolio__item-code">&lt;CRM /&gt;</span></div></div>
+            <div class="portfolio__item-visual">
+              <img class="portfolio__item-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w, https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&amp;q=80&amp;auto=format&amp;fit=crop 1400w" sizes="(min-width: 900px) 45vw, 95vw" alt="CRM-дашборд с аналитикой на ноутбуке" loading="lazy" decoding="async" width="1400" height="875" />
+              <div class="portfolio__item-overlay"><span class="portfolio__item-code">&lt;CRM /&gt;</span></div>
+            </div>
             <h3 class="portfolio__item-name">Enterprise CRM Platform</h3>
             <p class="portfolio__item-tech">React · Node.js · PostgreSQL · WebSockets</p>
           </article>
           <article class="portfolio__item" data-portfolio-item>
-            <div class="portfolio__item-visual"><div class="portfolio__item-placeholder"><span class="portfolio__item-code">bot.init()</span></div></div>
+            <div class="portfolio__item-visual">
+              <img class="portfolio__item-img" src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=900&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w, https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1400&amp;q=80&amp;auto=format&amp;fit=crop 1400w" sizes="(min-width: 900px) 45vw, 95vw" alt="Смартфон с мессенджером Telegram" loading="lazy" decoding="async" width="1400" height="875" />
+              <div class="portfolio__item-overlay"><span class="portfolio__item-code">bot.init()</span></div>
+            </div>
             <h3 class="portfolio__item-name">High-load Telegram Bot</h3>
             <p class="portfolio__item-tech">Python · Redis · PostgreSQL · Docker</p>
           </article>
           <article class="portfolio__item" data-portfolio-item>
-            <div class="portfolio__item-visual"><div class="portfolio__item-placeholder"><span class="portfolio__item-code">render()</span></div></div>
+            <div class="portfolio__item-visual">
+              <img class="portfolio__item-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w, https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1400&amp;q=80&amp;auto=format&amp;fit=crop 1400w" sizes="(min-width: 900px) 45vw, 95vw" alt="Real-time дашборд с графиками" loading="lazy" decoding="async" width="1400" height="875" />
+              <div class="portfolio__item-overlay"><span class="portfolio__item-code">render()</span></div>
+            </div>
             <h3 class="portfolio__item-name">Real-time Dashboard SPA</h3>
             <p class="portfolio__item-tech">TypeScript · React · D3.js · SSE</p>
           </article>
           <article class="portfolio__item" data-portfolio-item>
-            <div class="portfolio__item-visual"><div class="portfolio__item-placeholder"><span class="portfolio__item-code">async fn()</span></div></div>
+            <div class="portfolio__item-visual">
+              <img class="portfolio__item-img" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&amp;q=80&amp;auto=format&amp;fit=crop 600w, https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=900&amp;q=80&amp;auto=format&amp;fit=crop 900w, https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1400&amp;q=80&amp;auto=format&amp;fit=crop 1400w" sizes="(min-width: 900px) 45vw, 95vw" alt="Код на экране — automation pipeline" loading="lazy" decoding="async" width="1400" height="875" />
+              <div class="portfolio__item-overlay"><span class="portfolio__item-code">async fn()</span></div>
+            </div>
             <h3 class="portfolio__item-name">Automation Pipeline</h3>
             <p class="portfolio__item-tech">Node.js · Bull MQ · Stripe API · AWS</p>
           </article>
@@ -248,7 +235,7 @@
       </section>
 
       <section id="stack" class="stack" data-section="stack">
-        <span class="stack__eyebrow">[ 06 ] · Stack</span>
+        <span class="stack__eyebrow">[ 05 ] · Stack</span>
         <div class="marquee" data-marquee>
           <div class="marquee__track" data-marquee-track>
             <span class="marquee__item">TypeScript</span><span class="marquee__item marquee__item--dot">·</span>
@@ -269,7 +256,7 @@
       <section id="contact" class="footer" data-section="contact">
         <div class="footer__unfold" aria-hidden="true"></div>
         <div class="footer__inner">
-          <span class="footer__eyebrow">[ 07 ] · Contact</span>
+          <span class="footer__eyebrow">[ 06 ] · Contact</span>
           <h2 class="footer__title">Готовы<br />обсудить проект?</h2>
           <p class="footer__copy">Мы берём в работу только те проекты, где можем принести реальную инженерную ценность. Готовы обсудить вашу задачу?</p>
           <a class="magnetic" data-magnetic data-cursor-target href="https://t.me/ilyahpy" target="_blank" rel="noopener noreferrer">
