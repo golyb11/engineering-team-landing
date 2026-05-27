@@ -1,8 +1,5 @@
 /**
- * src/styles/main.css
- * ----------------------------------------------------------------------------
- * Global stylesheet — single file that @imports every modular section sheet.
- * ----------------------------------------------------------------------------
+ * src/styles/main.css — imports every modular section sheet.
  */
 @import './tokens.css';
 @import './reset.css';
@@ -15,8 +12,10 @@
 @import './solutions.css';
 @import './process.css';
 @import './portfolio.css';
+@import './portfolio-mocks.css';
 @import './stack.css';
 @import './footer.css';
 @import './stats.css';
 @import './ui.css';
+@import './sections.css';
 @import './responsive.css';
