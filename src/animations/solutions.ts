@@ -4,12 +4,13 @@
  * Sticky stacking cards animation for the Solutions section.
  *
  * Behaviour:
- *   - The section acts as the ScrollTrigger container. As the user scrolls
- *     through it, each `.solutions__card` (already position:sticky via CSS)
- *     gets a slight scale-down and shadow increase to visually "press" into
- *     the deck as the next card slides over it.
+ *   - Each `.solutions__card` is `position:sticky` (CSS) with a generous
+ *     `margin-block-end` so there is real scroll distance between cards.
+ *   - As the next card approaches, the previous one scales down and dims
+ *     smoothly via a long scrub window (feels like a deck being pressed).
+ *   - First-enter fade/slide-up is one-way (no reverse) to avoid flicker
+ *     when scrolling fast.
  *   - Body theme is toggled to 'dark' while the section is in view.
- *   - Each card fades + slides in from below on first enter.
  *
  * Dependencies: ./gsap-setup (GSAP + ScrollTrigger)
  * Related CSS: src/styles/solutions.css
@@ -35,33 +36,32 @@ export function initSolutions(): void {
     onLeaveBack: () => document.body.setAttribute('data-theme', 'light'),
   });
 
-  // Animate each card in on scroll
+  // Animate each card in on scroll (one-way, no reverse to prevent flicker)
   cards.forEach((card, index) => {
     gsap.from(card, {
       opacity: 0,
-      y: 80,
-      scale: 0.96,
-      duration: 1,
+      y: 60,
+      scale: 0.97,
+      duration: 1.1,
       ease: 'expo.out',
-      delay: index * 0.05,
       scrollTrigger: {
         trigger: card,
-        start: 'top 90%',
-        toggleActions: 'play none none reverse',
+        start: 'top 85%',
+        toggleActions: 'play none none none',
       },
     });
 
-    // For all but last card: scale down slightly as user scrolls past
+    // For all but last card: long, smooth scale-down as next card approaches
     if (index < cards.length - 1) {
       ScrollTrigger.create({
         trigger: cards[index + 1],
-        start: 'top bottom',
-        end: 'top 30%',
-        scrub: 0.5,
+        start: 'top 95%',
+        end: 'top 35%',
+        scrub: 1.2,
         animation: gsap.to(card, {
-          scale: 0.95,
-          filter: 'brightness(0.7)',
-          duration: 1,
+          scale: 0.94,
+          filter: 'brightness(0.65)',
+          ease: 'none',
         }),
       });
     }

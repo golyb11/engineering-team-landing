@@ -4,7 +4,11 @@
  * Sticky stacking cards section. Each `.solutions__card` uses position:sticky
  * to stack on top of the previous one as user scrolls, creating a "deck of
  * cards" effect. ScrollTrigger in `src/animations/solutions.ts` handles the
- * y-offset and slight scale/rotation for premium feel.
+ * scale/brightness press-down for premium feel.
+ *
+ * The large `margin-block-end` on each card gives the user enough scroll
+ * distance to read each card before the next one slides over it. This is
+ * the key tuning knob for pacing.
  *
  * Cards have dark background with subtle gradient borders and a glassmorphism
  * surface. Section background transitions to dark via data-theme toggle.
@@ -46,7 +50,9 @@
   margin: 0;
 }
 
-/* Cards wrapper — tall enough for sticky stacking to work */
+/* Cards wrapper — tall enough for sticky stacking to work.
+ * Bottom padding ensures the last card has scroll room before the next section.
+ */
 .solutions__cards {
   position: relative;
   max-inline-size: var(--max-width);
@@ -54,6 +60,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  padding-block-end: 20vh;
 }
 
 .solutions__card {
@@ -65,7 +72,8 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius);
   padding: clamp(2rem, 4vw, 3.5rem);
-  margin-block-end: clamp(1.5rem, 3vw, 2.5rem);
+  /* Large bottom margin = more scroll distance between cards = slower pacing */
+  margin-block-end: clamp(18vh, 28vh, 32vh);
   display: grid;
   grid-template-columns: auto 1fr auto;
   gap: clamp(1rem, 2vw, 2rem);
@@ -73,7 +81,7 @@
   transition:
     transform 0.6s var(--ease-out-expo),
     box-shadow 0.6s var(--ease-out-expo);
-  will-change: transform;
+  will-change: transform, filter;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
@@ -84,6 +92,10 @@
 
 .solutions__card:nth-child(3) {
   top: clamp(8rem, 14vh, 12rem);
+}
+
+.solutions__card:last-child {
+  margin-block-end: 0;
 }
 
 .solutions__card-index {
@@ -131,6 +143,12 @@
 @media (max-width: 900px) {
   .solutions__card {
     grid-template-columns: auto 1fr;
+    /* Tighter pacing on mobile — less scroll fatigue on small screens */
+    margin-block-end: clamp(8vh, 12vh, 16vh);
+  }
+
+  .solutions__cards {
+    padding-block-end: 10vh;
   }
 
   .solutions__card-title {
