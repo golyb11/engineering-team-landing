@@ -1,283 +1,93 @@
 /**
- * src/styles/responsive.css
- * ----------------------------------------------------------------------------
- * Mobile / touch overrides. Imported LAST so its rules win in the cascade.
- *
- * Critical mobile fix: on small screens the hero illustration switches from
- * absolute-positioned overlay to a contained, smaller background element so
- * that the glass panel with text is always fully visible and readable.
- *
- * All new sections (solutions, process, portfolio, team, stats) collapse to
- * single column with appropriate spacing. Sticky card behavior is disabled
- * on mobile.
- *
- * Dependencies: every other stylesheet.
- * ----------------------------------------------------------------------------
+ * responsive.css — mobile / touch overrides. Imported LAST so it wins.
  */
 
-/* Touch devices ------------------------------------------------------------ */
 @media (hover: none) {
-  .cursor {
-    display: none;
-  }
-
-  .marquee {
-    --marquee-duration: 30s;
-  }
+  .cursor { display: none; }
+  .marquee { --marquee-duration: 30s; }
 }
 
-/* Tablet and below --------------------------------------------------------- */
 @media (max-width: 900px) {
-  .site-header__nav {
-    display: none;
-  }
+  .site-header__nav { display: none; }
 
-  /* HERO — single column stacked layout */
-  .hero {
-    min-block-size: auto;
-    padding-block-start: 5rem;
-    padding-block-end: 3rem;
-  }
-
-  .hero__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1.5rem;
-    min-block-size: auto;
-  }
-
-  .hero__media {
-    order: -1;
-    max-block-size: 35vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-  }
-
+  /* HERO */
+  .hero { min-block-size: auto; padding-block-start: 5rem; padding-block-end: 3rem; }
+  .hero__inner { display: flex; flex-direction: column; align-items: stretch; gap: 1.5rem; min-block-size: auto; }
+  .hero__media { order: -1; max-block-size: 35vh; overflow: hidden; display: flex; justify-content: center; }
   .hero__illustration {
-    inline-size: min(70vw, 350px);
-    max-inline-size: 350px;
+    inline-size: min(70vw, 350px); max-inline-size: 350px;
     -webkit-mask-image: radial-gradient(ellipse at center, #000 50%, transparent 78%);
     mask-image: radial-gradient(ellipse at center, #000 50%, transparent 78%);
   }
+  .hero__media-glow { display: none; }
+  .hero__glass { padding: 1.5rem; background: rgba(255,255,255,0.6); border-radius: 1rem; }
+  .hero__title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+  .hero__lead { margin-block-start: 1rem; font-size: clamp(0.9rem, 2.5vw, 1.05rem); }
+  .hero__meta { margin-block-start: 0.8rem; }
+  .hero__scroll { display: none; }
 
-  .hero__media-glow {
-    display: none;
-  }
+  /* SOLUTIONS */
+  .solutions { padding-block: clamp(4rem, 8vw, 6rem); }
+  .solutions__title { font-size: clamp(2.5rem, 9vw, 4rem); }
+  .solutions__card { position: relative; top: auto !important; grid-template-columns: 1fr; }
+  .solutions__card-title, .solutions__card-text, .solutions__card-badge { grid-column: 1; }
+  .solutions__card-badge { justify-self: start; }
 
-  .hero__glass {
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 1rem;
-  }
+  /* PROCESS */
+  .process { padding-block: clamp(4rem, 8vw, 6rem); }
+  .process__title { font-size: clamp(2.5rem, 9vw, 4rem); }
+  .process__timeline { grid-template-columns: 3px 1fr; gap: 1.2rem; }
+  .process__step-indicator { inset-inline-start: calc(-1.2rem - 6px); }
 
-  .hero__title {
-    font-size: clamp(2.2rem, 8vw, 3.5rem);
-  }
-
-  .hero__lead {
-    margin-block-start: 1rem;
-    font-size: clamp(0.9rem, 2.5vw, 1.05rem);
-  }
-
-  .hero__meta {
-    margin-block-start: 0.8rem;
-  }
-
-  .hero__scroll {
-    display: none;
-  }
-
-  /* SOLUTIONS — disable sticky, simple stack */
-  .solutions {
-    padding-block: clamp(4rem, 8vw, 6rem);
-  }
-
-  .solutions__title {
-    font-size: clamp(2.5rem, 9vw, 4rem);
-  }
-
-  .solutions__card {
-    position: relative;
-    top: auto !important;
-    grid-template-columns: 1fr;
-  }
-
-  .solutions__card-title {
-    grid-column: 1;
-  }
-
-  .solutions__card-text {
-    grid-column: 1;
-  }
-
-  .solutions__card-badge {
-    grid-column: 1;
-    justify-self: start;
-  }
-
-  /* PROCESS — tighter layout */
-  .process {
-    padding-block: clamp(4rem, 8vw, 6rem);
-  }
-
-  .process__title {
-    font-size: clamp(2.5rem, 9vw, 4rem);
-  }
-
-  .process__timeline {
-    grid-template-columns: 3px 1fr;
-    gap: 1.2rem;
-  }
-
-  .process__step-indicator {
-    inset-inline-start: calc(-1.2rem - 6px);
-  }
-
-  /* PORTFOLIO — single column */
-  .portfolio {
-    padding-block: clamp(4rem, 8vw, 6rem);
-  }
-
-  .portfolio__title {
-    font-size: clamp(2.5rem, 9vw, 4rem);
-  }
-
-  .portfolio__grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  /* TEAM */
-  .team {
-    padding-block: clamp(4rem, 8vw, 6rem);
-  }
-
-  .team__title {
-    font-size: clamp(2.5rem, 9vw, 4rem);
-  }
+  /* PORTFOLIO */
+  .portfolio { padding-block: clamp(4rem, 8vw, 6rem); }
+  .portfolio__title { font-size: clamp(2.5rem, 9vw, 4rem); }
+  .portfolio__grid { grid-template-columns: 1fr; gap: 1.5rem; }
 
   /* STATS */
-  .stats {
-    padding-block: clamp(3rem, 7vw, 5rem);
-  }
+  .stats { padding-block: clamp(3rem, 7vw, 5rem); }
+
+  /* ENGAGEMENT */
+  .engage { padding-block: clamp(4rem, 8vw, 6rem); }
+  .engage__title { font-size: clamp(2.5rem, 9vw, 4rem); }
+  .engage__grid { grid-template-columns: 1fr; }
+
+  /* FAQ */
+  .faq { padding-block: clamp(4rem, 8vw, 6rem); }
+  .faq__title { font-size: clamp(2.5rem, 9vw, 4rem); }
+
+  /* INDUSTRIES */
+  .industries__inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
 
   /* FOOTER */
-  .footer__title {
-    font-size: clamp(2.8rem, 9vw, 5rem);
-  }
-
-  .magnetic__inner {
-    padding-block: 1.1rem;
-    padding-inline: 2rem;
-    font-size: 1rem;
-  }
+  .footer__title { font-size: clamp(2.8rem, 9vw, 5rem); }
+  .magnetic__inner { padding-block: 1.1rem; padding-inline: 2rem; font-size: 1rem; }
 }
 
-/* Phones ------------------------------------------------------------------- */
 @media (max-width: 480px) {
-  .preloader {
-    font-size: clamp(0.6rem, 2.5vw, 0.8rem);
-    padding: 1.2rem;
-  }
-
-  .hero {
-    padding-block-start: 4.5rem;
-    padding-inline: 1rem;
-  }
-
-  .hero__glass {
-    padding: 1rem;
-    border-radius: 0.75rem;
-    background: rgba(255, 255, 255, 0.7);
-  }
-
-  .hero__title {
-    font-size: clamp(2rem, 10vw, 3rem);
-  }
-
-  .hero__lead {
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
-
-  .hero__meta {
-    font-size: 0.65rem;
-  }
-
-  .solutions,
-  .process,
-  .portfolio,
-  .team,
-  .stats {
-    padding-inline: 1rem;
-  }
-
-  .solutions__card {
-    padding: 1.2rem;
-  }
-
-  .solutions__card-title {
-    font-size: 1.2rem;
-  }
-
-  .solutions__card-text {
-    font-size: 0.88rem;
-  }
-
-  .process__step-title {
-    font-size: 1.1rem;
-  }
-
-  .process__step-text {
-    font-size: 0.88rem;
-  }
-
-  .process__step {
-    grid-template-columns: 1fr;
-  }
-
-  .portfolio__item-name {
-    font-size: 1rem;
-  }
-
-  .team__title {
-    font-size: clamp(2.2rem, 11vw, 3.5rem);
-  }
-
-  .team__info {
-    padding: 1rem 1rem 1.2rem;
-  }
-
-  .stats__value {
-    font-size: clamp(2.2rem, 12vw, 3.8rem);
-  }
-
-  .to-top {
-    inline-size: 44px;
-    block-size: 44px;
-  }
-
-  .footer {
-    padding-inline: 1rem;
-  }
-
-  .footer__title {
-    font-size: clamp(2.2rem, 11vw, 4rem);
-  }
-
-  .footer__copy {
-    font-size: 0.9rem;
-  }
-
-  .magnetic__inner {
-    padding-block: 0.9rem;
-    padding-inline: 1.5rem;
-    font-size: 0.9rem;
-  }
-
-  .stack__note {
-    font-size: 0.88rem;
-  }
+  .preloader { font-size: clamp(0.6rem, 2.5vw, 0.8rem); padding: 1.2rem; }
+  .hero { padding-block-start: 4.5rem; padding-inline: 1rem; }
+  .hero__glass { padding: 1rem; border-radius: 0.75rem; background: rgba(255,255,255,0.7); }
+  .hero__title { font-size: clamp(2rem, 10vw, 3rem); }
+  .hero__lead { font-size: 0.88rem; line-height: 1.5; }
+  .hero__meta { font-size: 0.65rem; }
+  .solutions, .process, .portfolio, .stats, .engage, .faq, .industries { padding-inline: 1rem; }
+  .solutions__card { padding: 1.2rem; }
+  .solutions__card-title { font-size: 1.2rem; }
+  .solutions__card-text { font-size: 0.88rem; }
+  .process__step-title { font-size: 1.1rem; }
+  .process__step-text { font-size: 0.88rem; }
+  .process__step { grid-template-columns: 1fr; }
+  .portfolio__item-name { font-size: 1rem; }
+  .stats__value { font-size: clamp(2.2rem, 12vw, 3.8rem); }
+  .engage__card { padding: 1.4rem; }
+  .engage__card-title { font-size: 1.5rem; }
+  .faq__item summary { font-size: 1rem; }
+  .industries__item { font-size: 1rem; }
+  .to-top { inline-size: 44px; block-size: 44px; }
+  .footer { padding-inline: 1rem; }
+  .footer__title { font-size: clamp(2.2rem, 11vw, 4rem); }
+  .footer__copy { font-size: 0.9rem; }
+  .magnetic__inner { padding-block: 0.9rem; padding-inline: 1.5rem; font-size: 0.9rem; }
+  .stack__note { font-size: 0.88rem; }
 }
